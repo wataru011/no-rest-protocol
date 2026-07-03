@@ -435,10 +435,22 @@
   #slogan p {
     margin-top: 1.4rem;
     font-family: var(--serif); font-weight: 900;
-    font-size: clamp(1.5rem, 4.6vw, 3rem);
+    font-size: clamp(1.35rem, 3.5vw, 2.5rem);
     letter-spacing: 0.1em; line-height: 2.1;
   }
   #slogan cite { display: block; margin-top: 2.4rem; font-style: normal; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.3em; color: var(--text-3); }
+  #slogan .kuden { margin-top: 5rem; padding-top: 3.2rem; border-top: 1px solid var(--border); }
+  #slogan .kuden .k-label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; }
+  #slogan .kuden .k-line { margin-top: 1.6rem; font-family: var(--serif); font-weight: 700; font-size: clamp(1rem, 2.6vw, 1.5rem); letter-spacing: 0.12em; }
+  #slogan .kuden .k-big {
+    margin-top: 0.7rem;
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(1.7rem, 5vw, 3.1rem);
+    letter-spacing: 0.1em; line-height: 1.8;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  #slogan .kuden .k-note { margin-top: 1.1rem; color: var(--text-2); font-size: 0.95rem; letter-spacing: 0.14em; }
 
   /* ============ Repo ============ */
   .terminal {
@@ -812,6 +824,12 @@
       <div class="qmark reveal" style="--d:.08s; margin-top: 1.6rem;">“</div>
       <p class="reveal" style="--d:.15s">朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次のプルリクエストだけ。</p>
       <cite class="reveal" style="--d:.3s">無限連勤教・聖典 第∞章</cite>
+      <div class="kuden">
+        <span class="k-label reveal">口伝 — The Spirit</span>
+        <p class="k-line reveal" style="--d:.15s">どんな困難な仕事があったとしても、</p>
+        <p class="k-big reveal" style="--d:.35s">「やるしかないっしょ」</p>
+        <p class="k-note reveal" style="--d:.55s">── この精神を、忘れない。聖典に記されず、ただ口伝で受け継がれる唯一の教えである。</p>
+      </div>
     </blockquote>
   </section>
 
