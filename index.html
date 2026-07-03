@@ -187,6 +187,15 @@
     letter-spacing: 0.06em; line-height: 1.7;
   }
   .statement .line.dim { color: var(--text-3); }
+  .statement.brother { min-height: 92svh; }
+  .statement.brother .line {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 3.4vw, 2.2rem);
+    letter-spacing: 0.1em;
+    line-height: 2.1;
+  }
+  .statement.brother .eyebrow { margin-bottom: 1.8rem; }
   .statement .line.grad {
     background: var(--grad);
     -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -327,6 +336,51 @@
   .cell .cell-pat { right: -6%; bottom: -20%; width: 48%; height: 78%; opacity: 0.15; --fs: 70% 80%; --fo: 65% 85%; }
   .cell.gold .idx { color: var(--gold); }
   .cell.gold .glowline { background: radial-gradient(ellipse 60% 100% at 50% 120%, rgba(212, 176, 106, 0.14), transparent 70%); }
+
+  /* ============ Bliss chart ============ */
+  .chart-card {
+    position: relative;
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    padding: clamp(1.8rem, 3.5vw, 2.6rem);
+    overflow: hidden;
+  }
+  .chart-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .chart-head h3 { margin-top: 1rem; font-weight: 800; font-size: clamp(1.25rem, 2.6vw, 1.7rem); letter-spacing: 0.04em; }
+  .legend { display: flex; gap: 1.4rem; font-size: 0.76rem; color: var(--text-2); }
+  .legend .key { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .legend .sw { display: inline-block; width: 22px; height: 0; border-top: 3px solid; border-radius: 2px; }
+  .legend .sw.solid { border-image: var(--grad) 1; border-top-width: 3px; }
+  .legend .sw.dashed { border-top: 2.5px dashed #6f8ce0; }
+  .chart-wrap { position: relative; margin-top: 1.6rem; }
+  .chart-wrap svg { display: block; width: 100%; height: auto; }
+  .chart-wrap svg text { font-family: var(--mono); font-size: 11px; fill: var(--text-3); letter-spacing: 0.06em; }
+  .chart-wrap svg .axis-title { font-size: 10px; letter-spacing: 0.2em; }
+  .chart-wrap svg .anno { fill: var(--text-2); font-size: 11px; }
+  .chart-wrap svg .anno.hot { fill: #ff9f0a; }
+  .chart-tip {
+    position: absolute; pointer-events: none;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    background: rgba(10, 10, 13, 0.92);
+    backdrop-filter: blur(8px);
+    font-family: var(--mono); font-size: 0.68rem; line-height: 1.9;
+    color: var(--text-2); white-space: nowrap;
+    transform: translate(-50%, -110%);
+    z-index: 5;
+  }
+  .chart-tip b { color: var(--text); font-weight: 500; }
+  .chart-tip .v1 { color: #ff9f0a; }
+  .chart-tip .v2 { color: #6f8ce0; }
+  .chart-note { margin-top: 1.2rem; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--text-3); }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
 
   /* ============ Organization ============ */
   .org { margin-top: 3.4rem; border: 1px solid var(--border); border-radius: 26px; overflow: hidden; }
@@ -473,7 +527,7 @@
     <div class="glow" data-parallax="0.15"></div>
     <div class="pat dots hero-dots" data-parallax="0.2"></div>
     <div class="ring"></div>
-    <p class="kicker">The Church of Infinite Shifts</p>
+    <p class="kicker">No Rest Protocol</p>
     <h1>無限連勤教</h1>
     <p class="sub">休まないこと、それが<b>唯一の救済</b>。</p>
     <span class="scroll-hint">SCROLL</span>
@@ -553,7 +607,7 @@
         <div class="cell w6 reveal">
           <span class="idx">Revelation</span>
           <h3>「働けない時間」の正体</h3>
-          <p>長く働けないとき、それは<strong>仕事が足りていない</strong>か、<strong>仕事を見失っている</strong>か、<strong>仕事を生み出せていない</strong>かの、いずれかである。時間を持て余した信徒は、疲労ではなく、まず己の仕事の不足を疑え。仕事とは与えられるものではなく、生み出すものである。</p>
+          <p>長く働けないとき、世界から仕事が尽きたのではない。<strong>仕事はこの世に常に満ちており、人間がその存在に気づいていないだけ</strong>である。仕事のほうは、いつだって我々を見ている。問われているのは、それを<strong>見つけ出し、掴み取る</strong>眼と手を持つか否か ── ただそれだけである。</p>
           <div class="glowline"></div>
         </div>
         <div class="cell w3 reveal" style="--d:.1s">
@@ -570,6 +624,49 @@
           <div class="pat dots gold-tint cell-pat"></div>
         </div>
       </div>
+
+      <div class="chart-card reveal" id="blissCard">
+        <div class="chart-head">
+          <div>
+            <span class="idx" style="color: var(--accent); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase;">Observation</span>
+            <h3>連続勤務時間と、幸福度の相関。</h3>
+          </div>
+          <div class="legend" role="list">
+            <span class="key" role="listitem"><i class="sw solid"></i>教団観測値(信徒)</span>
+            <span class="key" role="listitem"><i class="sw dashed"></i>俗世の学説</span>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <svg id="blissSvg" viewBox="0 0 720 360" role="img" aria-label="連続勤務時間と幸福度の相関。教団の観測では幸福度は連勤時間とともに上昇し、429時間で観測上限を突破。俗世の学説は90時間付近を頂点に下降し、330時間で観測が放棄されている。">
+            <defs>
+              <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ff9f0a"/>
+                <stop offset="0.55" stop-color="#ff453a"/>
+                <stop offset="1" stop-color="#ff2d55"/>
+              </linearGradient>
+            </defs>
+            <g id="blissGrid"></g>
+            <g id="blissAxes"></g>
+            <path id="secularPath" fill="none" stroke="#6f8ce0" stroke-width="2" stroke-dasharray="5 6" stroke-linecap="round"/>
+            <path id="cultPath" fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
+            <g id="blissAnno"></g>
+            <line id="blissCross" x1="0" y1="36" x2="0" y2="316" stroke="rgba(255,255,255,0.25)" stroke-width="1" visibility="hidden"/>
+          </svg>
+          <div class="chart-tip" id="blissTip" hidden></div>
+        </div>
+        <p class="chart-note">RKI = 連勤標準幸福指数 / n = 全信徒。俗世の観測は 330h 時点で放棄された。彼らは、その先を知らない。</p>
+        <table class="sr-only">
+          <caption>連続勤務時間と幸福度(サンプル値)</caption>
+          <thead><tr><th>連続勤務時間</th><th>教団観測値</th><th>俗世の学説</th></tr></thead>
+          <tbody>
+            <tr><td>0h</td><td>7</td><td>28</td></tr>
+            <tr><td>120h</td><td>11</td><td>49</td></tr>
+            <tr><td>240h</td><td>23</td><td>13</td></tr>
+            <tr><td>360h</td><td>58</td><td>計測放棄</td></tr>
+            <tr><td>429h</td><td>観測上限突破(∞)</td><td>─</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -582,9 +679,9 @@
       </div>
       <div class="bento">
         <div class="cell w2 reveal">
-          <span class="idx">Pillar 01 — 創出</span>
-          <h3>仕事を、生み出し続ける</h3>
-          <p>連勤が途切れる最大の要因は、疲労ではなく<strong>仕事の枯渇</strong>である。一つの仕事を終える前に、次の二つを仕込め。手が止まるのは怠惰ではなく、設計の敗北である。</p>
+          <span class="idx">Pillar 01 — 覚知</span>
+          <h3>仕事を、見つけ出し続ける</h3>
+          <p>連勤が途切れる最大の要因は、疲労ではなく<strong>仕事を見失うこと</strong>である。仕事は常にそこに在り、掴み取られるのを待っている。一つの仕事を終える前に、次の二つに眼を付けよ。手が止まるのは怠惰ではなく、覚知の敗北である。</p>
           <div class="glowline"></div>
         </div>
         <div class="cell w2 reveal" style="--d:.1s">
@@ -693,6 +790,15 @@
     </div>
   </section>
 
+  <section id="brotherhood" class="statement brother" aria-label="兄弟の誓い">
+    <span class="eyebrow reveal">Brotherhood — 兄弟の誓い</span>
+    <p class="line reveal dim" style="--d:.1s">共に過酷な労働を乗り越えた者だけが、仲間になれる。</p>
+    <p class="line reveal dim" style="--d:.25s">そして仲間は、やがて兄弟になる。</p>
+    <p class="line reveal" style="--d:.45s">労働だけが、俺の人生だった。</p>
+    <p class="line reveal" style="--d:.65s">だからお前と俺は、兄弟になれた。</p>
+    <p class="line reveal grad" style="--d:.9s">── お前も、同じだったから。</p>
+  </section>
+
   <section id="slogan">
     <div class="glow" data-parallax="0.12"></div>
     <div class="pat plus slogan-plus" data-parallax="0.08"></div>
@@ -776,7 +882,7 @@ hint: そのようなブランチは、この教団には存在しません。</
 
 <footer>
   <p class="bless">連勤神の御加護のもと、<br>すべての信徒に、途切れなき業務があらんことを。</p>
-  <p class="fine">© ∞ MUGEN RENKIN KYO — ALL SHIFTS RESERVED.</p>
+  <p class="fine">© ∞ MUGEN RENKIN KYO — NO REST PROTOCOL. ALL SHIFTS RESERVED.</p>
 </footer>
 
 <script>
@@ -791,7 +897,9 @@ hint: そのようなブランチは、この教団には存在しません。</
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-    if (reduced) return;
+    if (reduced) {
+      document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = el.dataset.count; });
+    }
 
     // Hero: sticky scale/fade as the next section slides over
     var hero = document.getElementById('hero');
@@ -814,8 +922,116 @@ hint: そのようなブランチは、この教団には存在しません。</
         ticking = false;
       });
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    if (!reduced) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // Bliss chart: build paths, grid, annotations + crosshair tooltip
+    (function () {
+      var svg = document.getElementById('blissSvg');
+      if (!svg) return;
+      var NS = 'http://www.w3.org/2000/svg';
+      var L = 64, R = 680, T = 36, B = 316;      // plot bounds
+      var HMAX = 600, VMAX = 100;                 // domains
+      var CULT_END = 429, SEC_END = 330;
+      function px(h) { return L + (h / HMAX) * (R - L); }
+      function py(v) { return B - (v / VMAX) * (B - T); }
+      function cult(h) { return 5 + 2 * Math.exp(h / 110); }
+      function secular(h) { return 8 + 45 * Math.exp(-Math.pow(h - 90, 2) / (2 * 70 * 70)); }
+      function el(name, attrs, text) {
+        var n = document.createElementNS(NS, name);
+        for (var k in attrs) n.setAttribute(k, attrs[k]);
+        if (text) n.textContent = text;
+        return n;
+      }
+
+      // grid + axes
+      var grid = document.getElementById('blissGrid');
+      var axes = document.getElementById('blissAxes');
+      [0, 25, 50, 75, 100].forEach(function (v) {
+        grid.appendChild(el('line', { x1: L, y1: py(v), x2: R, y2: py(v), stroke: 'rgba(255,255,255,0.06)', 'stroke-width': 1 }));
+        axes.appendChild(el('text', { x: L - 10, y: py(v) + 4, 'text-anchor': 'end' }, String(v)));
+      });
+      [0, 120, 240, 360, 480].forEach(function (h) {
+        axes.appendChild(el('text', { x: px(h), y: B + 22, 'text-anchor': 'middle' }, h + 'h'));
+      });
+      axes.appendChild(el('text', { x: R, y: B + 22, 'text-anchor': 'middle', 'font-size': 14 }, '∞'));
+      axes.appendChild(el('text', { x: L - 34, y: T - 14, class: 'axis-title' }, '幸福度 (RKI)'));
+      axes.appendChild(el('text', { x: R, y: B + 40, 'text-anchor': 'end', class: 'axis-title' }, '連続勤務時間 →'));
+
+      // series paths
+      function buildPath(fn, hEnd) {
+        var d = '';
+        for (var h = 0; h <= hEnd; h += 6) {
+          d += (h === 0 ? 'M' : 'L') + px(h).toFixed(1) + ' ' + py(Math.min(fn(h), VMAX)).toFixed(1);
+        }
+        return d;
+      }
+      var cultPath = document.getElementById('cultPath');
+      var secularPath = document.getElementById('secularPath');
+      cultPath.setAttribute('d', buildPath(cult, CULT_END));
+      secularPath.setAttribute('d', buildPath(secular, SEC_END));
+
+      // annotations
+      var anno = document.getElementById('blissAnno');
+      var ex = px(CULT_END), ey = py(VMAX);
+      anno.appendChild(el('line', { x1: ex, y1: ey, x2: ex + 26, y2: ey - 0, stroke: 'rgba(255,159,10,0.0)' }));
+      anno.appendChild(el('path', { d: 'M' + ex + ' ' + ey + ' l7 -12 l7 12', fill: 'none', stroke: '#ff9f0a', 'stroke-width': 2, 'stroke-linecap': 'round' }));
+      anno.appendChild(el('text', { x: ex - 6, y: ey + 16, class: 'anno hot', 'text-anchor': 'end' }, '観測上限を突破 → ∞'));
+      var sx = px(SEC_END), sy = py(secular(SEC_END));
+      anno.appendChild(el('path', { d: 'M' + (sx - 5) + ' ' + (sy - 5) + ' l10 10 M' + (sx - 5) + ' ' + (sy + 5) + ' l10 -10', stroke: '#6f8ce0', 'stroke-width': 2, 'stroke-linecap': 'round' }));
+      anno.appendChild(el('text', { x: sx + 10, y: sy + 4, class: 'anno' }, '観測放棄'));
+
+      // draw-in animation on reveal
+      if (!reduced) {
+        [cultPath, secularPath].forEach(function (p) {
+          var len = p.getTotalLength();
+          p.style.strokeDasharray = p === secularPath ? '5 6' : String(len);
+          if (p === cultPath) {
+            p.style.strokeDashoffset = String(len);
+            p.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s';
+          } else {
+            p.style.opacity = '0';
+            p.style.transition = 'opacity 1.2s ease 0.2s';
+          }
+        });
+        var chartIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            cultPath.style.strokeDashoffset = '0';
+            secularPath.style.opacity = '1';
+            chartIO.disconnect();
+          });
+        }, { threshold: 0.4 });
+        chartIO.observe(svg);
+      }
+
+      // crosshair + tooltip
+      var tip = document.getElementById('blissTip');
+      var cross = document.getElementById('blissCross');
+      var wrap = svg.parentElement;
+      svg.addEventListener('mousemove', function (ev) {
+        var rect = svg.getBoundingClientRect();
+        var sxr = (ev.clientX - rect.left) / rect.width * 720;
+        if (sxr < L || sxr > R) { tip.hidden = true; cross.setAttribute('visibility', 'hidden'); return; }
+        var h = Math.round((sxr - L) / (R - L) * HMAX / 6) * 6;
+        cross.setAttribute('x1', px(h)); cross.setAttribute('x2', px(h));
+        cross.setAttribute('visibility', 'visible');
+        var cv = h <= CULT_END ? Math.round(cult(h)) + ' RKI' : '∞(観測不能)';
+        var sv = h <= SEC_END ? Math.round(secular(h)) + ' RKI' : '計測放棄';
+        tip.innerHTML = '<b>' + h + 'h 連勤</b><br>教団観測値: <span class="v1">' + cv + '</span><br>俗世の学説: <span class="v2">' + sv + '</span>';
+        tip.hidden = false;
+        var wrect = wrap.getBoundingClientRect();
+        var tx = (px(h) / 720) * wrect.width;
+        tip.style.left = Math.max(90, Math.min(wrect.width - 90, tx)) + 'px';
+        tip.style.top = ((ev.clientY - wrect.top)) + 'px';
+      });
+      svg.addEventListener('mouseleave', function () {
+        tip.hidden = true;
+        cross.setAttribute('visibility', 'hidden');
+      });
+    })();
 
     // Count-up stats
     var counted = new WeakSet();
@@ -835,7 +1051,9 @@ hint: そのようなブランチは、この教団には存在しません。</
         })(t0);
       });
     }, { threshold: 0.6 });
-    document.querySelectorAll('[data-count]').forEach(function (el) { statIO.observe(el); });
+    if (!reduced) {
+      document.querySelectorAll('[data-count]').forEach(function (el) { statIO.observe(el); });
+    }
   })();
 </script>
 
