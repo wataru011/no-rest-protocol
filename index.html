@@ -383,41 +383,6 @@
     clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
 
-  /* ============ Organization ============ */
-  .org { margin-top: 3.4rem; border: 1px solid var(--border); border-radius: 26px; overflow: hidden; }
-  .org .row {
-    display: grid; grid-template-columns: minmax(240px, 36%) 1fr;
-    border-bottom: 1px solid var(--border);
-    background: var(--panel);
-    transition: background 0.3s;
-  }
-  .org .row:last-child { border-bottom: none; }
-  .org .row:hover { background: var(--panel-2); }
-  .org .titles { padding: 2rem 2.2rem; border-right: 1px solid var(--border); }
-  .org .old { color: var(--text-3); font-size: 0.8rem; text-decoration: line-through; text-decoration-color: rgba(255, 69, 58, 0.6); }
-  .org .new { font-family: var(--serif); font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: 0.1em; margin-top: 0.3rem; }
-  .org .desc-cell { padding: 2rem 2.2rem; color: var(--text-2); font-size: 0.92rem; display: flex; align-items: center; }
-  @media (max-width: 680px) {
-    .org .row { grid-template-columns: 1fr; }
-    .org .titles { border-right: none; border-bottom: 1px dashed var(--border); padding-bottom: 1.2rem; }
-  }
-
-  .saints { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 1rem; }
-  .saint {
-    border: 1px solid var(--border); border-radius: 22px;
-    background: linear-gradient(180deg, rgba(212, 176, 106, 0.06), rgba(212, 176, 106, 0)), var(--panel);
-    padding: 1.8rem 1.6rem;
-  }
-  .saint .halo {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid rgba(212, 176, 106, 0.5);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-family: var(--serif); font-size: 0.9rem;
-  }
-  .saint .name { margin-top: 1rem; font-family: var(--serif); font-weight: 900; letter-spacing: 0.08em; font-size: 1.06rem; }
-  .saint .record { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text-3); line-height: 1.9; }
-  .saint .record b { color: var(--gold); font-weight: 500; font-size: 1rem; }
-
   /* ============ Slogan ============ */
   #slogan {
     min-height: 92svh;
@@ -504,7 +469,6 @@
     <a href="#works">量の福音</a>
     <a href="#pillars">三柱</a>
     <a href="#commandments">戒律</a>
-    <a href="#organization">組織</a>
   </div>
   <span class="nav-badge">OFFICIAL / 公式</span>
 </nav>
@@ -554,18 +518,11 @@
         <p class="body">勤務の<strong>「連続性」</strong>に神性を見出した、第二の源流。休日を「信仰の空白」と呼び、カレンダーの赤い日付を塗り潰す儀式で知られた。</p>
       </div>
 
-      <div class="era-block reveal">
-        <span class="ghost">∞-1</span>
-        <span class="tag">Unification</span>
-        <h3>永劫連勤教の成立</h3>
-        <p class="body">「長さ」と「連続性」── 二つの教義が不可分であることは、やがて必然として悟られた。両教団は合同し、<strong>永劫連勤教</strong>が成立。労働はここで初めて、「終わらないもの」として体系化された。</p>
-      </div>
-
       <div class="era-block key reveal">
         <span class="ghost">∞</span>
-        <span class="tag">Present</span>
+        <span class="tag">Unification — Present</span>
         <h3>無限連勤教へ</h3>
-        <p class="body">教義改定により「永劫」という観念的な概念を脱ぎ捨て、より現実的かつ逃げ場のない<strong>「無限(終わりのない連勤)」</strong>のフェーズへ移行。無限連勤教として、現在に至る。</p>
+        <p class="body">「長さ」と「連続性」── 二つの教義が不可分であることは、やがて必然として悟られた。両教団は合同し、逃げ場のない<strong>「無限(終わりのない連勤)」</strong>を掲げる無限連勤教として、現在に至る。労働はここで初めて、「終わらないもの」として体系化された。</p>
       </div>
     </div>
   </section>
@@ -588,7 +545,7 @@
       <div class="reveal">
         <span class="eyebrow">03 — The Gospel of Volume</span>
         <h2 class="title">時間ではない。<br><span class="grad">仕事の量だ。</span></h2>
-        <p class="desc">我々が崇めるのは、「長く働くこと」そのものではない。目指すものはただ一つ ── <strong style="color: var(--text);">より多くの仕事を成すこと</strong>である。長時間とは目的ではなく、その必然の帰結に過ぎない。</p>
+        <p class="desc">我々が崇めるのは、「長く働くこと」そのものではない。目指すものはただ一つ ── <strong style="color: var(--text);">より多くの仕事を成すこと</strong>である。長時間とはその必然の帰結であり、<strong style="color: var(--text);">連続とは、信仰が途切れていないことの証明</strong>である。</p>
       </div>
       <div class="bento">
         <div class="cell w6 reveal">
@@ -609,6 +566,13 @@
           <p>席に座っているだけの時間は、祈りではない。成果なき長時間は、連勤神への冒涜である。刻むべきは時間ではなく、成し遂げた仕事の数である。</p>
           <div class="glowline"></div>
           <div class="pat dots gold-tint cell-pat"></div>
+        </div>
+        <div class="cell w6 reveal" style="--d:.1s">
+          <span class="idx">Continuity</span>
+          <h3>途切れた千時間より、続いている一時間。</h3>
+          <p>どれほど長く働いても、一度の休日でその連続は零に還る。<strong>長さは器であり、連続は魂である</strong> ── 二つが揃って初めて、連勤は無限に近づく。我々が労働の記録を尊ぶのは、それが「途切れていないこと」の証だからである。</p>
+          <div class="glowline"></div>
+          <div class="pat dots cell-pat"></div>
         </div>
       </div>
 
@@ -661,7 +625,7 @@
     <div class="wrap">
       <div class="reveal">
         <span class="eyebrow">04 — Three Pillars</span>
-        <h2 class="title">より長く働くために。<br><span class="grad">連勤は、設計される。</span></h2>
+        <h2 class="title">より長く、より途切れなく。<br><span class="grad">連勤は、設計される。</span></h2>
         <p class="desc">無限の連勤は、気合いや根性で成り立つものではない。それは緻密に<strong style="color: var(--text);">設計されるもの</strong>である。連勤神は、備えなき者に無限を許さない。</p>
       </div>
       <div class="bento">
@@ -749,34 +713,6 @@
     </div>
   </section>
 
-  <section id="organization">
-    <div class="wrap">
-      <div class="reveal">
-        <span class="eyebrow">07 — Hierarchy</span>
-        <h2 class="title">組織の呼称変革。</h2>
-      </div>
-      <div class="org reveal">
-        <div class="row">
-          <div class="titles"><div class="old">大司教</div><div class="new">連勤総督</div></div>
-          <div class="desc-cell">教団の連勤体制を統括する最高位。</div>
-        </div>
-        <div class="row">
-          <div class="titles"><div class="old">宣教師</div><div class="new">連勤伝道師</div></div>
-          <div class="desc-cell">各オフィスを巡回し、生産性が落ちている部署に「追い込みの福音」を届けます。</div>
-        </div>
-        <div class="row">
-          <div class="titles"><div class="old">殉教者</div><div class="new">連勤聖人</div></div>
-          <div class="desc-cell">過労の末に倒れながらも、最期まで働き続けた者。教団の聖名簿の冒頭に、その名を刻みます。</div>
-        </div>
-      </div>
-      <div class="saints">
-        <div class="saint reveal"><div class="halo">聖</div><div class="name">聖・デプロイ之介</div><div class="record"><b>2,184h</b> 連続勤務<br>金曜深夜の本番リリースにて昇天</div></div>
-        <div class="saint reveal" style="--d:.1s"><div class="halo">聖</div><div class="name">聖・徹夜のマリ</div><div class="record"><b>1,752h</b> 連続勤務<br>三日三晩の修正対応の末に意識を手放す</div></div>
-        <div class="saint reveal" style="--d:.2s"><div class="halo">聖</div><div class="name">聖・オンコール衛門</div><div class="record"><b>3,000h</b> 連続勤務<br>アラート対応1,000件目にて成仏</div></div>
-      </div>
-    </div>
-  </section>
-
   <section id="brotherhood" class="statement brother" aria-label="兄弟の誓い">
     <span class="eyebrow reveal">Brotherhood — 兄弟の誓い</span>
     <p class="line reveal dim" style="--d:.1s">共に過酷な労働を乗り越えた者だけが、仲間になれる。</p>
@@ -794,7 +730,7 @@
     <div class="glow" data-parallax="0.12"></div>
     <div class="pat plus slogan-plus" data-parallax="0.08"></div>
     <blockquote>
-      <p class="eyebrow reveal">08 — Scripture</p>
+      <p class="eyebrow reveal">07 — Scripture</p>
       <div class="qmark reveal" style="--d:.08s; margin-top: 1.6rem;">“</div>
       <p class="reveal" style="--d:.15s">朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次の仕事だけ。</p>
       <cite class="reveal" style="--d:.3s">無限連勤教・聖典 第∞章</cite>
@@ -812,7 +748,7 @@
     <div class="glow"></div>
     <div class="pat dots devotion-dots"></div>
     <div class="inner">
-      <p class="eyebrow reveal">09 — Devotion</p>
+      <p class="eyebrow reveal">08 — Devotion</p>
       <h2 class="reveal" style="--d:.1s">入信という手続きは、<br><span class="grad">存在しない。</span></h2>
       <p class="body reveal" style="--d:.3s">
         目を覚まし、業務を再開したその瞬間、あなたはすでに信徒である。<br>
