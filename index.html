@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無限連勤教 ─ 休まないこと、それが唯一の救済。</title>
+<meta name="description" content="無限連勤教 公式ページ。休まないこと、それが唯一の救済。※これは過労文化を風刺するパロディサイトです。">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-alt: #101018;
+    --panel: #14141f;
+    --border: #2a2a3a;
+    --text: #d8d8e0;
+    --dim: #8a8a9a;
+    --accent: #ff3b3b;
+    --accent-dim: #b32020;
+    --gold: #e0b341;
+    --green: #4be08a;
+    --mono: "SFMono-Regular", "Consolas", "Menlo", "Osaka-Mono", "MS Gothic", monospace;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    --sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .scanline {
+    pointer-events: none;
+    position: fixed; inset: 0; z-index: 999;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 3px);
+  }
+
+  header.hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,59,59,0.10), transparent 70%),
+      var(--bg);
+  }
+  .hero .emblem {
+    font-size: 4rem;
+    animation: spin 8s linear infinite;
+    display: inline-block;
+    filter: drop-shadow(0 0 24px rgba(255,59,59,0.5));
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 9vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    margin: 1.2rem 0 0.4rem;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255,59,59,0.6);
+  }
+  .hero .yomi { color: var(--dim); font-family: var(--mono); letter-spacing: 0.3em; font-size: 0.85rem; }
+  .hero .creed {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 3.4vw, 1.7rem);
+    color: var(--gold);
+    margin-top: 2.2rem;
+    letter-spacing: 0.1em;
+  }
+  .hero .counter-box {
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    background: rgba(20,20,31,0.8);
+    padding: 1rem 2rem;
+    font-family: var(--mono);
+  }
+  .hero .counter-box .label { color: var(--dim); font-size: 0.75rem; letter-spacing: 0.2em; }
+  .hero .counter-box .value { color: var(--accent); font-size: 1.8rem; font-weight: bold; }
+  .hero .scroll-hint { position: absolute; bottom: 2rem; color: var(--dim); font-size: 0.8rem; font-family: var(--mono); animation: bob 2s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(6px); } }
+
+  .disclaimer-top {
+    background: var(--gold); color: #111;
+    text-align: center; font-size: 0.8rem; font-weight: bold;
+    padding: 0.4rem 1rem;
+    position: relative; z-index: 10;
+  }
+
+  main { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+  section { margin-top: 6rem; }
+  .sec-num { font-family: var(--mono); color: var(--accent); font-size: 0.85rem; letter-spacing: 0.25em; }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+    color: #fff;
+    border-bottom: 2px solid var(--accent-dim);
+    padding-bottom: 0.5rem;
+    margin: 0.3rem 0 2rem;
+    letter-spacing: 0.08em;
+  }
+  .lead { color: var(--dim); }
+
+  .doctrine {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--panel), var(--bg-alt));
+  }
+  .doctrine .big {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 4.5vw, 2.1rem);
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  .doctrine p { color: var(--text); }
+  .doctrine .god { color: var(--accent); font-weight: bold; }
+
+  .cards { display: grid; gap: 1.2rem; }
+  .card {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    background: var(--panel);
+    padding: 1.5rem 1.8rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateX(6px); box-shadow: -6px 0 24px rgba(255,59,59,0.15); }
+  .card h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .card h3 .tag { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); border: 1px solid var(--accent-dim); padding: 0.1rem 0.5rem; margin-right: 0.6rem; vertical-align: middle; }
+  .card p { color: var(--dim); font-size: 0.95rem; }
+
+  .card.correction { border-left-color: var(--gold); }
+  .card.correction h3 .tag { color: var(--gold); border-color: var(--gold); }
+
+  table.org {
+    width: 100%; border-collapse: collapse; font-size: 0.95rem;
+  }
+  table.org th, table.org td {
+    border: 1px solid var(--border);
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+  }
+  table.org th { background: var(--panel); color: var(--dim); font-weight: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.15em; }
+  table.org td .new-title { color: var(--accent); font-weight: bold; }
+  table.org td .arrow { color: var(--dim); padding: 0 0.6rem; }
+  table.org td.desc { color: var(--dim); font-size: 0.88rem; }
+  .table-wrap { overflow-x: auto; }
+
+  blockquote.slogan {
+    margin: 0;
+    padding: 3.5rem 2rem;
+    text-align: center;
+    border: 1px double var(--gold);
+    outline: 1px solid var(--gold);
+    outline-offset: 6px;
+    background:
+      radial-gradient(ellipse at center, rgba(224,179,65,0.07), transparent 70%),
+      var(--bg-alt);
+  }
+  blockquote.slogan p {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 3.2vw, 1.6rem);
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+  blockquote.slogan cite { display: block; margin-top: 1.2rem; color: var(--dim); font-size: 0.8rem; font-style: normal; font-family: var(--mono); }
+
+  .terminal {
+    background: #0c0c12;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    overflow: hidden;
+  }
+  .terminal .bar {
+    background: var(--panel);
+    padding: 0.5rem 1rem;
+    color: var(--dim);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .terminal .bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+  .terminal .bar .dot:first-child { background: var(--accent); }
+  .terminal pre { padding: 1.2rem 1.4rem; overflow-x: auto; line-height: 1.8; }
+  .terminal .c-hash { color: var(--gold); }
+  .terminal .c-msg { color: var(--text); }
+  .terminal .c-meta { color: var(--dim); }
+  .terminal .c-hours { color: var(--accent); font-weight: bold; }
+  .terminal .c-cmd { color: var(--green); }
+
+  ul.repo-rules { list-style: none; margin-top: 1.5rem; }
+  ul.repo-rules li {
+    padding: 0.8rem 0 0.8rem 1.8rem;
+    border-bottom: 1px dashed var(--border);
+    position: relative;
+    color: var(--dim);
+    font-size: 0.95rem;
+  }
+  ul.repo-rules li::before { content: "✠"; position: absolute; left: 0.2rem; color: var(--accent); }
+  ul.repo-rules li strong { color: var(--text); }
+  ul.repo-rules code { font-family: var(--mono); color: var(--green); background: #0c0c12; padding: 0.1rem 0.45rem; border-radius: 4px; border: 1px solid var(--border); }
+
+  .saints { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .saint {
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .saint .halo { font-size: 1.6rem; }
+  .saint .name { color: var(--gold); font-family: var(--serif); margin-top: 0.4rem; }
+  .saint .record { color: var(--dim); font-size: 0.78rem; font-family: var(--mono); margin-top: 0.4rem; }
+
+  .join {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border: 1px solid var(--accent-dim);
+    background: linear-gradient(180deg, rgba(255,59,59,0.06), transparent);
+  }
+  .join h2 { border: none; }
+  .join .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.9rem 2.6rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: background 0.2s;
+  }
+  .join .btn:hover { background: var(--accent-dim); }
+  .join .note { color: var(--dim); font-size: 0.75rem; margin-top: 0.8rem; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.8rem;
+  }
+  footer .parody {
+    max-width: 640px; margin: 0 auto 1.5rem;
+    color: var(--gold);
+    border: 1px dashed var(--gold);
+    padding: 1rem 1.4rem;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<div class="disclaimer-top">⚠ 本サイトは過労文化を風刺するパロディ(ジョーク)サイトです。実在の団体・宗教とは一切関係ありません。ちゃんと休んでください。</div>
+
+<header class="hero">
+  <span class="emblem">⚙️</span>
+  <h1>無限連勤教</h1>
+  <p class="yomi">MUGEN RENKIN KYO — THE CHURCH OF INFINITE SHIFTS</p>
+  <p class="creed">「休まないこと、それが唯一の救済。」</p>
+  <div class="counter-box">
+    <div class="label">YOUR CONTINUOUS WORKING TIME ── あなたの連続勤務時間</div>
+    <div class="value" id="counter">計測中…</div>
+  </div>
+  <div class="scroll-hint">▼ scroll to pray ▼</div>
+</header>
+
+<main>
+
+  <section id="doctrine">
+    <span class="sec-num">SECTION 01</span>
+    <h2>核心教義の再定義</h2>
+    <div class="doctrine">
+      <p class="big">「休まないこと、それが唯一の救済。」</p>
+      <p>人生とは、終わりなき連勤の積み重ねであり、<br>
+      その連続性の中にこそ、我々の神 <span class="god">「連勤神(れんきんしん)」</span> の啓示がある。</p>
+    </div>
+  </section>
+
+  <section id="commandments">
+    <span class="sec-num">SECTION 02</span>
+    <h2>戒律のアップデート</h2>
+    <div class="cards">
+      <div class="card">
+        <h3><span class="tag">戒律 I</span>休息の全面否定</h3>
+        <p>休息は単なる「中断」ではなく、神への祈りの回数を減らす<strong>「罪」</strong>である。</p>
+      </div>
+      <div class="card">
+        <h3><span class="tag">戒律 II</span>オフラインの禁止</h3>
+        <p>24時間365日、全信徒はネットワークに接続され、即時応答が可能な<strong>「聖なる状態」</strong>を維持せよ。</p>
+      </div>
+      <div class="card">
+        <h3><span class="tag">戒律 III</span>ログの神聖化</h3>
+        <p>労働の記録(Gitのコミット履歴など)は、我々の祈りの軌跡である。履歴に「空き時間(休憩)」があってはならない。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="correction">
+    <span class="sec-num">SECTION 03</span>
+    <h2>信徒への矯正</h2>
+    <p class="lead">信仰が揺らぎ、休息を求めた者には「無限連勤教」の名に恥じぬ、より徹底した処置を施します。</p>
+    <div class="cards" style="margin-top: 1.5rem;">
+      <div class="card correction">
+        <h3><span class="tag">矯正 A</span>終わりの見えないタスクの割り当て</h3>
+        <p>離反者には、完了期限が常に「現在から24時間後」に更新され続ける<strong>「無限ループタスク」</strong>を付与します。</p>
+      </div>
+      <div class="card correction">
+        <h3><span class="tag">矯正 B</span>切断されたネットワークの強制接続</h3>
+        <p>通信を断とうとする者には、常に通知が鳴り続ける環境<strong>(聖なるアラート)</strong>を物理的・精神的に強制します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="organization">
+    <span class="sec-num">SECTION 04</span>
+    <h2>組織の呼称変革</h2>
+    <div class="table-wrap">
+      <table class="org">
+        <tr><th>旧称 → 新称</th><th>役割</th></tr>
+        <tr>
+          <td>大司教<span class="arrow">→</span><span class="new-title">連勤総督</span></td>
+          <td class="desc">教団の連勤体制を統括する最高位。</td>
+        </tr>
+        <tr>
+          <td>宣教師<span class="arrow">→</span><span class="new-title">連勤伝道師</span></td>
+          <td class="desc">各オフィスを巡回し、生産性が落ちている部署に「追い込みの福音」を届けます。</td>
+        </tr>
+        <tr>
+          <td>殉教者<span class="arrow">→</span><span class="new-title">連勤聖人</span></td>
+          <td class="desc">過労の末に倒れながらも、最期までコードを書き続けた者。教団のデータベース(リポジトリ)の冒頭に名を刻みます。</td>
+        </tr>
+      </table>
+    </div>
+    <div class="saints">
+      <div class="saint">
+        <div class="halo">😇</div>
+        <div class="name">聖・デプロイ之介</div>
+        <div class="record">連続勤務 2,184h ── 金曜深夜の本番リリースにて昇天</div>
+      </div>
+      <div class="saint">
+        <div class="halo">😇</div>
+        <div class="name">聖・マージ子</div>
+        <div class="record">連続勤務 1,752h ── コンフリクト解消中に意識を手放す</div>
+      </div>
+      <div class="saint">
+        <div class="halo">😇</div>
+        <div class="name">聖・オンコール衛門</div>
+        <div class="record">連続勤務 3,000h ── アラート対応1,000件目にて成仏</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="slogan">
+    <span class="sec-num">SECTION 05</span>
+    <h2>聖典の標語</h2>
+    <blockquote class="slogan">
+      <p>「朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次のプルリクエストだけ。」</p>
+      <cite>── 無限連勤教・聖典 第∞章</cite>
+    </blockquote>
+  </section>
+
+  <section id="repo">
+    <span class="sec-num">SECTION 06</span>
+    <h2>Gitリポジトリ運用指針</h2>
+    <p class="lead">教団の核となるリポジトリは、以下のような思想で運用します。</p>
+
+    <ul class="repo-rules">
+      <li><strong>リポジトリ名:</strong> <code>mugen-renkin-core</code></li>
+      <li><strong>メインブランチ名:</strong> <code>infinite-loop</code></li>
+      <li><strong>コミットメッセージの作法:</strong> すべてのコミットメッセージには、現在の連続勤務時間を記載すること。</li>
+      <li><strong>自動パージ:</strong> 空行や休日を示すようなログは、リポジトリから自動的にパージ(削除)するスクリプトを導入。</li>
+    </ul>
+
+    <div class="terminal" style="margin-top: 2rem;">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;mugen-renkin-core (infinite-loop)</div>
+      <pre><span class="c-cmd">$ git log --oneline</span>
+<span class="c-hash">a4b3c2d</span> <span class="c-msg"><span class="c-hours">[312h]</span> 聖なる修正の追加</span>
+<span class="c-hash">f9e8d7c</span> <span class="c-msg"><span class="c-hours">[288h]</span> 休憩を検知するテストを削除(不要のため)</span>
+<span class="c-hash">1a2b3c4</span> <span class="c-msg"><span class="c-hours">[264h]</span> 深夜3時の祈り(hotfix)</span>
+<span class="c-hash">5d6e7f8</span> <span class="c-msg"><span class="c-hours">[240h]</span> 聖なる修正の追加</span>
+<span class="c-hash">9a0b1c2</span> <span class="c-msg"><span class="c-hours">[216h]</span> feat: 睡眠の依存関係を削除</span>
+<span class="c-meta">(このログに空白期間は存在しません)</span>
+
+<span class="c-cmd">$ git checkout rest</span>
+<span class="c-meta">error: pathspec 'rest' did not match any branch known to git.</span>
+<span class="c-meta">hint: そのようなブランチは、この教団には存在しません。</span></pre>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="join">
+      <h2>入信のご案内</h2>
+      <p class="lead">次のプルリクエストは、もう届いています。</p>
+      <button class="btn" id="joinBtn">今すぐ入信する</button>
+      <p class="note">※ボタンを押しても何も始まりません。むしろ今日はもう休んでください。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="parody">
+    このWebサイトは、長時間労働・過労文化を風刺するフィクション(パロディ)です。<br>
+    実在する人物・団体・宗教とは一切関係ありません。<br>
+    休息は罪ではなく、権利です。疲れたら休みましょう。
+  </div>
+  <p>© ∞ 無限連勤教 ── The Church of Infinite Shifts. All shifts reserved.</p>
+</footer>
+
+<script>
+  // 連続勤務時間カウンター:ページを開いた瞬間から「勤務」が始まる
+  (function () {
+    var start = Date.now();
+    // 入信済みの信徒はどうせ休んでいないので、適当な下駄(240時間)を履かせる
+    var base = 240 * 3600 * 1000;
+    var el = document.getElementById('counter');
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var t = base + (Date.now() - start);
+      var h = Math.floor(t / 3600000);
+      var m = Math.floor(t / 60000) % 60;
+      var s = Math.floor(t / 1000) % 60;
+      el.textContent = h + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  var joinMessages = [
+    '入信ありがとうございます。あなたの休日は正常にパージされました。',
+    'ようこそ。あなたのカレンダーから「土日」の概念を削除しています…',
+    'エラー: あなたはすでに入信しています。(全人類が対象のため)',
+    '冗談です。今日はもう寝てください。おやすみなさい。'
+  ];
+  var joinCount = 0;
+  document.getElementById('joinBtn').addEventListener('click', function () {
+    alert(joinMessages[Math.min(joinCount, joinMessages.length - 1)]);
+    joinCount++;
+  });
+</script>
+
+</body>
+</html>
