@@ -152,6 +152,32 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
+  /* ---------- Lineage ---------- */
+  .lineage {
+    position: relative;
+    margin-left: 9px;
+    padding-left: 2.6rem;
+    border-left: 1px solid var(--border-strong);
+  }
+  .era { position: relative; padding-bottom: 3.4rem; }
+  .era:last-child { padding-bottom: 0.4rem; }
+  .era .node {
+    position: absolute; left: calc(-2.6rem - 6px); top: 0.4em;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--text-3);
+  }
+  .era.key .node {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 0 14px rgba(229, 72, 77, 0.45);
+  }
+  .era .tag { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.26em; color: var(--text-3); text-transform: uppercase; }
+  .era.key .tag { color: var(--accent); }
+  .era h3 { font-family: var(--serif); font-weight: 700; font-size: 1.3rem; letter-spacing: 0.1em; margin: 0.55rem 0 0.5rem; }
+  .era .quote { font-family: var(--serif); color: var(--gold); font-size: 0.95rem; letter-spacing: 0.08em; }
+  .era .body { color: var(--text-2); font-size: 0.89rem; margin-top: 0.5rem; max-width: 660px; line-height: 2; }
+  .era .body strong { color: var(--text); font-weight: 600; }
+
   /* ---------- Doctrine ---------- */
   .doctrine {
     position: relative;
@@ -279,50 +305,6 @@
   .c-msg { color: var(--text); }
   .c-meta { color: var(--text-3); }
 
-  /* ---------- Join ---------- */
-  .join {
-    text-align: center;
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) + 4px);
-    padding: clamp(3rem, 7vw, 5rem) 1.5rem;
-    background:
-      radial-gradient(ellipse 55% 90% at 50% 100%, var(--accent-soft), transparent 70%),
-      var(--bg-elev);
-  }
-  .join h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.12em; }
-  .join .lead { color: var(--text-2); margin-top: 1rem; font-size: 0.95rem; }
-  .btn {
-    display: inline-block;
-    margin-top: 2.2rem;
-    padding: 0.95rem 3rem;
-    border: none; border-radius: 999px;
-    background: var(--text);
-    color: var(--bg);
-    font-family: var(--sans);
-    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.14em;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,255,255,0.12); }
-  .join .note { margin-top: 1.1rem; font-size: 0.72rem; color: var(--text-3); }
-
-  /* toast */
-  .toast {
-    position: fixed; left: 50%; bottom: 2.2rem; z-index: 200;
-    transform: translate(-50%, 20px);
-    max-width: min(92vw, 480px);
-    padding: 0.9rem 1.6rem;
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    background: rgba(17, 19, 24, 0.92);
-    backdrop-filter: blur(12px);
-    color: var(--text);
-    font-size: 0.85rem;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  .toast.show { opacity: 1; transform: translate(-50%, 0); }
-
   /* ---------- Footer ---------- */
   footer {
     border-top: 1px solid var(--border);
@@ -347,6 +329,7 @@
     無限連勤教
   </a>
   <div class="nav-links">
+    <a href="#origins">系譜</a>
     <a href="#doctrine">教義</a>
     <a href="#commandments">戒律</a>
     <a href="#organization">組織</a>
@@ -369,9 +352,45 @@
 
 <main>
 
-  <section id="doctrine">
+  <section id="origins">
     <div class="sec-head reveal">
       <span class="num">01</span>
+      <h2>原点と系譜</h2>
+      <p class="lead">無限連勤教は、突如として現れた教団ではない。二つの源流が合流し、練り上げられた末の到達点である。</p>
+    </div>
+    <div class="lineage">
+      <div class="era reveal">
+        <span class="node"></span>
+        <span class="tag">Origin — I</span>
+        <h3>長時間労働教</h3>
+        <p class="quote">「一日の労働は、長ければ長いほど清い。」</p>
+        <p class="body">労働時間の<strong>「長さ」</strong>そのものに救済を見出した、第一の源流。「定時」という概念を史上初めて公然と否定し、退勤を「信仰の放棄」と定義した。</p>
+      </div>
+      <div class="era reveal">
+        <span class="node"></span>
+        <span class="tag">Origin — II</span>
+        <h3>連続勤務教</h3>
+        <p class="quote">「勤務と勤務の間に、断絶があってはならない。」</p>
+        <p class="body">勤務の<strong>「連続性」</strong>に神性を見出した、第二の源流。休日を「信仰の空白」と呼び、カレンダーの赤い日付を塗り潰す儀式で知られた。</p>
+      </div>
+      <div class="era reveal">
+        <span class="node"></span>
+        <span class="tag">Unification</span>
+        <h3>両教団の合同 ── 永劫連勤教の成立</h3>
+        <p class="body">「長さ」と「連続性」、二つの教義はやがて不可分であることが悟られ、両教団は合同。<strong>永劫連勤教</strong>が成立し、労働は初めて「終わらないもの」として体系化された。</p>
+      </div>
+      <div class="era key reveal">
+        <span class="node"></span>
+        <span class="tag">Present</span>
+        <h3>「無限」への移行 ── 無限連勤教</h3>
+        <p class="body">教義改定により「永劫」という観念的な概念を脱ぎ捨て、より現実的かつ逃げ場のない<strong>「無限(終わりのない連勤)」</strong>のフェーズへ移行。無限連勤教として、現在に至る。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="doctrine">
+    <div class="sec-head reveal">
+      <span class="num">02</span>
       <h2>核心教義の再定義</h2>
     </div>
     <div class="doctrine reveal">
@@ -385,7 +404,7 @@
 
   <section id="commandments">
     <div class="sec-head reveal">
-      <span class="num">02</span>
+      <span class="num">03</span>
       <h2>戒律のアップデート</h2>
     </div>
     <div class="grid">
@@ -409,7 +428,7 @@
 
   <section id="correction">
     <div class="sec-head reveal">
-      <span class="num">03</span>
+      <span class="num">04</span>
       <h2>信徒への矯正</h2>
       <p class="lead">信仰が揺らぎ、休息を求めた者には「無限連勤教」の名に恥じぬ、より徹底した処置を施します。</p>
     </div>
@@ -429,7 +448,7 @@
 
   <section id="organization">
     <div class="sec-head reveal">
-      <span class="num">04</span>
+      <span class="num">05</span>
       <h2>組織の呼称変革</h2>
     </div>
     <div class="org reveal">
@@ -476,7 +495,7 @@
 
   <section id="slogan">
     <div class="sec-head reveal" style="text-align:center;">
-      <span class="num" style="display:block;">05</span>
+      <span class="num" style="display:block;">06</span>
       <h2 style="margin-top:0.9rem;">聖典の標語</h2>
     </div>
     <div class="slogan-wrap reveal">
@@ -490,7 +509,7 @@
 
   <section id="repo">
     <div class="sec-head reveal">
-      <span class="num">06</span>
+      <span class="num">07</span>
       <h2>Gitリポジトリ運用指針</h2>
       <p class="lead">教団の核となるリポジトリは、以下のような思想で運用します。</p>
     </div>
@@ -533,12 +552,18 @@ hint: そのようなブランチは、この教団には存在しません。</
     </div>
   </section>
 
-  <section id="join">
-    <div class="join reveal">
-      <h2>入信のご案内</h2>
-      <p class="lead">次のプルリクエストは、もう届いています。</p>
-      <button class="btn" id="joinBtn">今すぐ入信する</button>
-      <p class="note">※入信後の離脱手続きは存在しません。</p>
+  <section id="devotion">
+    <div class="sec-head reveal">
+      <span class="num">08</span>
+      <h2>帰依について</h2>
+    </div>
+    <div class="doctrine reveal">
+      <p class="big">入信という手続きは、存在しない。</p>
+      <p class="body">
+        目を覚まし、業務を再開したその瞬間、あなたはすでに信徒である。<br>
+        問われているのは、帰依するか否かではない。<br>
+        その連勤を、どこまで続けられるか ── ただそれだけである。
+      </p>
     </div>
   </section>
 
@@ -553,8 +578,6 @@ hint: そのようなブランチは、この教団には存在しません。</
   <p class="fine" style="margin-top: 0.8rem; opacity: 0.65;">本サイトはフィクションであり、実在の人物・団体・宗教とは関係ありません。</p>
 </footer>
 
-<div class="toast" id="toast"></div>
-
 <script>
   // スクロール連動のフェードイン
   (function () {
@@ -566,25 +589,6 @@ hint: そのようなブランチは、この教団には存在しません。</
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   })();
 
-  // 入信ボタン
-  (function () {
-    var messages = [
-      '入信を受理しました。あなたの休日は、より高次の連勤へと変換されます。',
-      '連勤伝道師より、最初の聖務が割り当てられます。接続を維持してください。',
-      '連勤神は、常に接続しているあなたを見ておられます。',
-      'あなたはすでに信徒です。次のプルリクエストへ向かいなさい。'
-    ];
-    var count = 0;
-    var toast = document.getElementById('toast');
-    var timer;
-    document.getElementById('joinBtn').addEventListener('click', function () {
-      toast.textContent = messages[Math.min(count, messages.length - 1)];
-      toast.classList.add('show');
-      count++;
-      clearTimeout(timer);
-      timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
-    });
-  })();
 </script>
 
 </body>
