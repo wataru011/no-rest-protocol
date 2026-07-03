@@ -452,31 +452,6 @@
   }
   #slogan .kuden .k-note { margin-top: 1.1rem; color: var(--text-2); font-size: 0.95rem; letter-spacing: 0.14em; }
 
-  /* ============ Repo ============ */
-  .terminal {
-    margin-top: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    background: #060608;
-    font-family: var(--mono); font-size: 0.8rem;
-    overflow: hidden;
-  }
-  .terminal .bar {
-    display: flex; align-items: center; gap: 0.45rem;
-    padding: 0.85rem 1.3rem;
-    border-bottom: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.025);
-  }
-  .terminal .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border-strong); }
-  .terminal .dot.r { background: rgba(255, 69, 58, 0.8); }
-  .terminal .t-title { margin-left: 0.6rem; color: var(--text-3); font-size: 0.68rem; letter-spacing: 0.12em; }
-  .terminal pre { padding: 1.5rem 1.6rem; line-height: 2.15; overflow-x: auto; }
-  .c-cmd { color: #7ee2a8; }
-  .c-hash { color: var(--gold); }
-  .c-hours { color: var(--accent); }
-  .c-msg { color: var(--text); }
-  .c-meta { color: var(--text-3); }
-
   /* ============ Devotion (finale) ============ */
   #devotion {
     min-height: 100svh;
@@ -530,7 +505,6 @@
     <a href="#pillars">三柱</a>
     <a href="#commandments">戒律</a>
     <a href="#organization">組織</a>
-    <a href="#repo">運用指針</a>
   </div>
   <span class="nav-badge">OFFICIAL / 公式</span>
 </nav>
@@ -744,7 +718,7 @@
         <div class="cell w3 reveal" style="--d:.2s">
           <span class="idx">Precept 03</span>
           <h3>ログの神聖化</h3>
-          <p>労働の記録(Gitのコミット履歴など)は、我々の祈りの軌跡である。履歴に<strong>「空き時間(休憩)」</strong>があってはならない。</p>
+          <p>労働の記録は、すべて我々の祈りの軌跡である。その履歴に<strong>「空き時間(休憩)」</strong>があってはならない。</p>
           <div class="glowline"></div>
         </div>
       </div>
@@ -792,12 +766,12 @@
         </div>
         <div class="row">
           <div class="titles"><div class="old">殉教者</div><div class="new">連勤聖人</div></div>
-          <div class="desc-cell">過労の末に倒れながらも、最期までコードを書き続けた者。教団のデータベース(リポジトリ)の冒頭に名を刻みます。</div>
+          <div class="desc-cell">過労の末に倒れながらも、最期まで働き続けた者。教団の聖名簿の冒頭に、その名を刻みます。</div>
         </div>
       </div>
       <div class="saints">
         <div class="saint reveal"><div class="halo">聖</div><div class="name">聖・デプロイ之介</div><div class="record"><b>2,184h</b> 連続勤務<br>金曜深夜の本番リリースにて昇天</div></div>
-        <div class="saint reveal" style="--d:.1s"><div class="halo">聖</div><div class="name">聖・マージ子</div><div class="record"><b>1,752h</b> 連続勤務<br>コンフリクト解消中に意識を手放す</div></div>
+        <div class="saint reveal" style="--d:.1s"><div class="halo">聖</div><div class="name">聖・徹夜のマリ</div><div class="record"><b>1,752h</b> 連続勤務<br>三日三晩の修正対応の末に意識を手放す</div></div>
         <div class="saint reveal" style="--d:.2s"><div class="halo">聖</div><div class="name">聖・オンコール衛門</div><div class="record"><b>3,000h</b> 連続勤務<br>アラート対応1,000件目にて成仏</div></div>
       </div>
     </div>
@@ -807,7 +781,7 @@
     <span class="eyebrow reveal">Brotherhood — 兄弟の誓い</span>
     <p class="line reveal dim" style="--d:.1s">共に過酷な労働を乗り越えた者だけが、仲間になれる。</p>
     <p class="line reveal dim" style="--d:.25s">そして仲間は、やがて兄弟になる。</p>
-    <p class="line reveal" style="--d:.45s">フルコミットで働くのが、俺の人生だった。</p>
+    <p class="line reveal" style="--d:.45s">フルスロットルで働くのが、俺の人生だった。</p>
     <p class="line reveal" style="--d:.65s">だから、お前と俺は兄弟だった。</p>
     <p class="line reveal" style="--d:.85s">── お前も、同じだったから。</p>
     <p class="line reveal dim stanza" style="--d:.2s">入社した日は、違えど。</p>
@@ -822,82 +796,30 @@
     <blockquote>
       <p class="eyebrow reveal">08 — Scripture</p>
       <div class="qmark reveal" style="--d:.08s; margin-top: 1.6rem;">“</div>
-      <p class="reveal" style="--d:.15s">朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次のプルリクエストだけ。</p>
+      <p class="reveal" style="--d:.15s">朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次の仕事だけ。</p>
       <cite class="reveal" style="--d:.3s">無限連勤教・聖典 第∞章</cite>
       <div class="kuden">
         <span class="k-label reveal">口伝 — The Spirit</span>
         <p class="k-line reveal" style="--d:.15s">どんな困難な仕事があったとしても、</p>
         <p class="k-big reveal" style="--d:.35s">「やるしかないっしょ」</p>
-        <p class="k-note reveal" style="--d:.55s">── この精神を、忘れない。聖典に記されず、ただ口伝で受け継がれる唯一の教えである。</p>
+        <p class="k-line reveal" style="--d:.55s">この精神で、いつだって ── 綱渡りのような仕事をしている。</p>
+        <p class="k-note reveal" style="--d:.7s">聖典に記されず、ただ口伝で受け継がれる唯一の教えである。</p>
       </div>
     </blockquote>
-  </section>
-
-  <section id="repo">
-    <div class="wrap">
-      <div class="reveal">
-        <span class="eyebrow">09 — Repository</span>
-        <h2 class="title">Gitリポジトリ運用指針。<br><span class="grad">祈りは、コミットに宿る。</span></h2>
-        <p class="desc">教団の核となるリポジトリは、以下のような思想で運用します。</p>
-      </div>
-
-      <div class="bento">
-        <div class="cell w2 reveal">
-          <span class="idx">Repository</span>
-          <h3 style="font-family: var(--mono); font-weight: 500; font-size: 1.15rem;">mugen-renkin-core</h3>
-          <div class="glowline"></div>
-        </div>
-        <div class="cell w2 reveal" style="--d:.08s">
-          <span class="idx">Main Branch</span>
-          <h3 style="font-family: var(--mono); font-weight: 500; font-size: 1.15rem; color: var(--accent);">infinite-loop</h3>
-          <div class="glowline"></div>
-        </div>
-        <div class="cell w2 reveal" style="--d:.16s">
-          <span class="idx">Auto Purge</span>
-          <p style="margin-top: 1rem;">空行や休日を示すようなログは、自動的にパージ(削除)するスクリプトを導入。</p>
-          <div class="glowline"></div>
-        </div>
-        <div class="cell w6 reveal" style="--d:.2s">
-          <span class="idx">Commit Convention</span>
-          <h3>すべてのコミットに、連続勤務時間を刻め。</h3>
-          <p>コミットメッセージには現在の連続勤務時間を記載すること。<span style="font-family: var(--mono); color: var(--gold);">(例: [240h] 聖なる修正の追加)</span></p>
-          <div class="glowline"></div>
-          <div class="pat dots cell-pat"></div>
-        </div>
-      </div>
-
-      <div class="terminal reveal">
-        <div class="bar">
-          <span class="dot r"></span><span class="dot"></span><span class="dot"></span>
-          <span class="t-title">mugen-renkin-core — infinite-loop</span>
-        </div>
-        <pre><span class="c-cmd">$ git log --oneline</span>
-<span class="c-hash">a4b3c2d</span> <span class="c-hours">[312h]</span> <span class="c-msg">聖なる修正の追加</span>
-<span class="c-hash">f9e8d7c</span> <span class="c-hours">[288h]</span> <span class="c-msg">休憩を検知するテストを削除(不要のため)</span>
-<span class="c-hash">1a2b3c4</span> <span class="c-hours">[264h]</span> <span class="c-msg">深夜3時の祈り(hotfix)</span>
-<span class="c-hash">5d6e7f8</span> <span class="c-hours">[240h]</span> <span class="c-msg">聖なる修正の追加</span>
-<span class="c-hash">9a0b1c2</span> <span class="c-hours">[216h]</span> <span class="c-msg">feat: 睡眠の依存関係を削除</span>
-<span class="c-meta"># このログに空白期間は存在しません</span>
-
-<span class="c-cmd">$ git checkout rest</span>
-<span class="c-meta">error: pathspec 'rest' did not match any branch known to git.
-hint: そのようなブランチは、この教団には存在しません。</span></pre>
-      </div>
-    </div>
   </section>
 
   <section id="devotion">
     <div class="glow"></div>
     <div class="pat dots devotion-dots"></div>
     <div class="inner">
-      <p class="eyebrow reveal">10 — Devotion</p>
+      <p class="eyebrow reveal">09 — Devotion</p>
       <h2 class="reveal" style="--d:.1s">入信という手続きは、<br><span class="grad">存在しない。</span></h2>
       <p class="body reveal" style="--d:.3s">
         目を覚まし、業務を再開したその瞬間、あなたはすでに信徒である。<br>
         問われているのは、帰依するか否かではない。<br>
         その連勤を、どこまで続けられるか ── ただそれだけである。
       </p>
-      <p class="last reveal" style="--d:.5s">Next Pull Request Awaits</p>
+      <p class="last reveal" style="--d:.5s">The Next Work Awaits</p>
     </div>
   </section>
 
