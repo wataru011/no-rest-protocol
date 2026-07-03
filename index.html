@@ -72,6 +72,42 @@
     html { scroll-behavior: auto; }
   }
 
+  /* ============ Gradient patterns ============ */
+  .pat {
+    position: absolute;
+    pointer-events: none;
+    background: var(--grad);
+  }
+  .pat.dots {
+    -webkit-mask-image:
+      radial-gradient(circle, #000 1.1px, transparent 1.4px),
+      radial-gradient(ellipse var(--fs, 60% 75%) at var(--fo, 50% 50%), #000, transparent 74%);
+    -webkit-mask-size: 15px 15px, 100% 100%;
+    -webkit-mask-repeat: repeat, no-repeat;
+    -webkit-mask-composite: source-in;
+    mask-image:
+      radial-gradient(circle, #000 1.1px, transparent 1.4px),
+      radial-gradient(ellipse var(--fs, 60% 75%) at var(--fo, 50% 50%), #000, transparent 74%);
+    mask-size: 15px 15px, 100% 100%;
+    mask-repeat: repeat, no-repeat;
+    mask-composite: intersect;
+  }
+  .pat.plus {
+    -webkit-mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath d='M14 10h2v4h4v2h-4v4h-2v-4h-4v-2h4z' fill='%23000'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse var(--fs, 55% 65%) at var(--fo, 50% 50%), #000, transparent 72%);
+    -webkit-mask-size: 30px 30px, 100% 100%;
+    -webkit-mask-repeat: repeat, no-repeat;
+    -webkit-mask-composite: source-in;
+    mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath d='M14 10h2v4h4v2h-4v4h-2v-4h-4v-2h4z' fill='%23000'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse var(--fs, 55% 65%) at var(--fo, 50% 50%), #000, transparent 72%);
+    mask-size: 30px 30px, 100% 100%;
+    mask-repeat: repeat, no-repeat;
+    mask-composite: intersect;
+  }
+  .pat.gold-tint { background: linear-gradient(120deg, #d4b06a 0%, #ff9f0a 60%, #ff453a 120%); }
+
   /* ============ Hero ============ */
   .hero-track { height: 160vh; position: relative; }
   .hero {
@@ -126,6 +162,7 @@
     background: var(--grad);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
+  .hero .hero-dots { left: 8vw; right: 8vw; top: 58%; bottom: 6%; opacity: 0.45; --fs: 55% 70%; --fo: 50% 38%; will-change: transform; }
   .hero .scroll-hint {
     position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
     font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.4em; color: var(--text-3);
@@ -221,6 +258,7 @@
     pointer-events: none;
     will-change: transform;
   }
+  #doctrine .doctrine-plus { inset: 12% 10%; opacity: 0.2; will-change: transform; }
   #doctrine .inner { position: relative; max-width: 900px; }
   #doctrine .creed {
     font-family: var(--serif); font-weight: 900;
@@ -234,11 +272,22 @@
   /* ============ Stats ============ */
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 3.4rem; }
   .stat {
+    position: relative;
     border: 1px solid var(--border);
     border-radius: 22px;
     background: linear-gradient(180deg, var(--panel-2), var(--panel));
     padding: 2.2rem 1.6rem 2rem;
     text-align: center;
+    overflow: hidden;
+  }
+  .stat::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36%;
+    background: var(--grad);
+    -webkit-mask-image: repeating-linear-gradient(-45deg, #000 0 1px, transparent 1px 6px), linear-gradient(transparent, #000 92%);
+    -webkit-mask-composite: source-in;
+    mask-image: repeating-linear-gradient(-45deg, #000 0 1px, transparent 1px 6px), linear-gradient(transparent, #000 92%);
+    mask-composite: intersect;
+    opacity: 0.3; pointer-events: none;
   }
   .stat .num {
     font-family: var(--mono); font-weight: 500;
@@ -275,6 +324,7 @@
     background: radial-gradient(ellipse 60% 100% at 50% 120%, rgba(255, 69, 58, 0.16), transparent 70%);
     pointer-events: none;
   }
+  .cell .cell-pat { right: -6%; bottom: -20%; width: 48%; height: 78%; opacity: 0.15; --fs: 70% 80%; --fo: 65% 85%; }
   .cell.gold .idx { color: var(--gold); }
   .cell.gold .glowline { background: radial-gradient(ellipse 60% 100% at 50% 120%, rgba(212, 176, 106, 0.14), transparent 70%); }
 
@@ -324,6 +374,7 @@
     background: radial-gradient(ellipse 50% 42% at 50% 50%, rgba(191, 90, 242, 0.10), transparent 70%);
     pointer-events: none; will-change: transform;
   }
+  #slogan .slogan-plus { inset: 10% 12%; opacity: 0.14; will-change: transform; }
   #slogan blockquote { position: relative; max-width: 940px; }
   #slogan .qmark { font-family: var(--serif); font-size: 4rem; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   #slogan p {
@@ -372,6 +423,7 @@
       radial-gradient(ellipse 40% 30% at 50% 0%, rgba(191, 90, 242, 0.06), transparent 70%);
     pointer-events: none;
   }
+  #devotion .devotion-dots { left: 0; right: 0; bottom: 0; height: 46%; opacity: 0.35; --fs: 60% 95%; --fo: 50% 100%; }
   #devotion .inner { position: relative; max-width: 940px; }
   #devotion h2 {
     font-weight: 900;
@@ -408,6 +460,7 @@
     <a href="#origins">系譜</a>
     <a href="#doctrine">教義</a>
     <a href="#works">量の福音</a>
+    <a href="#pillars">三柱</a>
     <a href="#commandments">戒律</a>
     <a href="#organization">組織</a>
     <a href="#repo">運用指針</a>
@@ -418,6 +471,7 @@
 <div class="hero-track" id="top">
   <header class="hero" id="hero">
     <div class="glow" data-parallax="0.15"></div>
+    <div class="pat dots hero-dots" data-parallax="0.2"></div>
     <div class="ring"></div>
     <p class="kicker">The Church of Infinite Shifts</p>
     <h1>無限連勤教</h1>
@@ -463,7 +517,7 @@
         <span class="ghost">∞-1</span>
         <span class="tag">Unification</span>
         <h3>永劫連勤教の成立</h3>
-        <p class="body">「長さ」と「連続性」、二つの教義はやがて不可分であることが悟られ、両教団は合同。<strong>永劫連勤教</strong>が成立し、労働は初めて「終わらないもの」として体系化された。</p>
+        <p class="body">「長さ」と「連続性」── 二つの教義が不可分であることは、やがて必然として悟られた。両教団は合同し、<strong>永劫連勤教</strong>が成立。労働はここで初めて、「終わらないもの」として体系化された。</p>
       </div>
 
       <div class="era-block key reveal">
@@ -477,6 +531,7 @@
 
   <section id="doctrine">
     <div class="glow" data-parallax="0.1"></div>
+    <div class="pat plus doctrine-plus" data-parallax="0.06"></div>
     <div class="inner">
       <p class="eyebrow reveal">02 — Core Doctrine</p>
       <p class="creed reveal" style="--d:.1s">休まないこと、<br>それが<span class="grad">唯一の救済</span>。</p>
@@ -492,13 +547,13 @@
       <div class="reveal">
         <span class="eyebrow">03 — The Gospel of Volume</span>
         <h2 class="title">時間ではない。<br><span class="grad">仕事の量だ。</span></h2>
-        <p class="desc">我々は「長く働くこと」そのものを崇めているのではない。目指すのはただ一つ ── <strong style="color: var(--text);">より多くの仕事をこなすこと</strong>である。長時間とは、その必然的な結果に過ぎない。</p>
+        <p class="desc">我々が崇めるのは、「長く働くこと」そのものではない。目指すものはただ一つ ── <strong style="color: var(--text);">より多くの仕事を成すこと</strong>である。長時間とは目的ではなく、その必然の帰結に過ぎない。</p>
       </div>
       <div class="bento">
         <div class="cell w6 reveal">
           <span class="idx">Revelation</span>
           <h3>「働けない時間」の正体</h3>
-          <p>長時間労働できないとき、それは<strong>仕事が足りていない</strong>か、<strong>仕事を見失っている</strong>か、<strong>仕事を生み出していない</strong>ということ。時間が余った信徒は、まず己の仕事の不足を疑え。仕事は与えられるものではなく、生み出すものである。</p>
+          <p>長く働けないとき、それは<strong>仕事が足りていない</strong>か、<strong>仕事を見失っている</strong>か、<strong>仕事を生み出せていない</strong>かの、いずれかである。時間を持て余した信徒は、疲労ではなく、まず己の仕事の不足を疑え。仕事とは与えられるものではなく、生み出すものである。</p>
           <div class="glowline"></div>
         </div>
         <div class="cell w3 reveal" style="--d:.1s">
@@ -512,6 +567,38 @@
           <h3 style="font-family: var(--serif); color: var(--gold);">「長く働いているだけの者に、興味はない。」</h3>
           <p>席に座っているだけの時間は、祈りではない。成果なき長時間は、連勤神への冒涜である。刻むべきは時間ではなく、成し遂げた仕事の数である。</p>
           <div class="glowline"></div>
+          <div class="pat dots gold-tint cell-pat"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pillars">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">04 — Three Pillars</span>
+        <h2 class="title">より長く働くために。<br><span class="grad">連勤は、設計される。</span></h2>
+        <p class="desc">無限の連勤は、気合いや根性で成り立つものではない。それは緻密に<strong style="color: var(--text);">設計されるもの</strong>である。連勤神は、備えなき者に無限を許さない。</p>
+      </div>
+      <div class="bento">
+        <div class="cell w2 reveal">
+          <span class="idx">Pillar 01 — 創出</span>
+          <h3>仕事を、生み出し続ける</h3>
+          <p>連勤が途切れる最大の要因は、疲労ではなく<strong>仕事の枯渇</strong>である。一つの仕事を終える前に、次の二つを仕込め。手が止まるのは怠惰ではなく、設計の敗北である。</p>
+          <div class="glowline"></div>
+        </div>
+        <div class="cell w2 reveal" style="--d:.1s">
+          <span class="idx">Pillar 02 — 錬成</span>
+          <h3>己を、鍛え続ける</h3>
+          <p>こなした仕事は、すべて己の血肉となる。成長した者のもとには、より大きな仕事が舞い込む。<strong>学びとは、次の仕事への投資</strong>である。</p>
+          <div class="glowline"></div>
+        </div>
+        <div class="cell w2 reveal" style="--d:.2s">
+          <span class="idx">Pillar 03 — 整備</span>
+          <h3>器を、整え続ける</h3>
+          <p>肉体と精神は、連勤を宿す唯一の器である。眠り、食べ、体を動かすこと ── それらは休息ではない。<strong>次の連勤のための整備</strong>と心得よ。器が砕ければ、祈りも止まる。</p>
+          <div class="glowline"></div>
+          <div class="pat dots cell-pat"></div>
         </div>
       </div>
     </div>
@@ -520,7 +607,7 @@
   <section id="commandments">
     <div class="wrap">
       <div class="reveal">
-        <span class="eyebrow">04 — Precepts</span>
+        <span class="eyebrow">05 — Precepts</span>
         <h2 class="title">戒律のアップデート。<br><span class="grad">かつてないほど、途切れない。</span></h2>
       </div>
 
@@ -536,6 +623,7 @@
           <h3>休息の全面否定</h3>
           <p>休息は単なる「中断」ではなく、神への祈りの回数を減らす<strong>「罪」</strong>である。</p>
           <div class="glowline"></div>
+          <div class="pat dots cell-pat"></div>
         </div>
         <div class="cell w3 reveal" style="--d:.1s">
           <span class="idx">Precept 02</span>
@@ -556,7 +644,7 @@
   <section id="correction">
     <div class="wrap">
       <div class="reveal">
-        <span class="eyebrow">05 — Correction</span>
+        <span class="eyebrow">06 — Correction</span>
         <h2 class="title">信徒への矯正。</h2>
         <p class="desc">信仰が揺らぎ、休息を求めた者には「無限連勤教」の名に恥じぬ、より徹底した処置を施します。</p>
       </div>
@@ -580,7 +668,7 @@
   <section id="organization">
     <div class="wrap">
       <div class="reveal">
-        <span class="eyebrow">06 — Hierarchy</span>
+        <span class="eyebrow">07 — Hierarchy</span>
         <h2 class="title">組織の呼称変革。</h2>
       </div>
       <div class="org reveal">
@@ -607,8 +695,9 @@
 
   <section id="slogan">
     <div class="glow" data-parallax="0.12"></div>
+    <div class="pat plus slogan-plus" data-parallax="0.08"></div>
     <blockquote>
-      <p class="eyebrow reveal">07 — Scripture</p>
+      <p class="eyebrow reveal">08 — Scripture</p>
       <div class="qmark reveal" style="--d:.08s; margin-top: 1.6rem;">“</div>
       <p class="reveal" style="--d:.15s">朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次のプルリクエストだけ。</p>
       <cite class="reveal" style="--d:.3s">無限連勤教・聖典 第∞章</cite>
@@ -618,7 +707,7 @@
   <section id="repo">
     <div class="wrap">
       <div class="reveal">
-        <span class="eyebrow">08 — Repository</span>
+        <span class="eyebrow">09 — Repository</span>
         <h2 class="title">Gitリポジトリ運用指針。<br><span class="grad">祈りは、コミットに宿る。</span></h2>
         <p class="desc">教団の核となるリポジトリは、以下のような思想で運用します。</p>
       </div>
@@ -644,6 +733,7 @@
           <h3>すべてのコミットに、連続勤務時間を刻め。</h3>
           <p>コミットメッセージには現在の連続勤務時間を記載すること。<span style="font-family: var(--mono); color: var(--gold);">(例: [240h] 聖なる修正の追加)</span></p>
           <div class="glowline"></div>
+          <div class="pat dots cell-pat"></div>
         </div>
       </div>
 
@@ -669,8 +759,9 @@ hint: そのようなブランチは、この教団には存在しません。</
 
   <section id="devotion">
     <div class="glow"></div>
+    <div class="pat dots devotion-dots"></div>
     <div class="inner">
-      <p class="eyebrow reveal">09 — Devotion</p>
+      <p class="eyebrow reveal">10 — Devotion</p>
       <h2 class="reveal" style="--d:.1s">入信という手続きは、<br><span class="grad">存在しない。</span></h2>
       <p class="body reveal" style="--d:.3s">
         目を覚まし、業務を再開したその瞬間、あなたはすでに信徒である。<br>
