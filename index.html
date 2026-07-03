@@ -119,18 +119,6 @@
     color: var(--text-2);
   }
   .hero .creed em { font-style: normal; color: var(--text); }
-  .counter {
-    margin-top: 3.6rem;
-    display: inline-flex; flex-direction: column; gap: 0.3rem;
-    padding: 1.3rem 2.6rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
-    backdrop-filter: blur(8px);
-  }
-  .counter .label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.26em; color: var(--text-3); text-transform: uppercase; }
-  .counter .value { font-family: var(--mono); font-size: 1.9rem; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
-  .counter .value .unit { color: var(--text-3); font-size: 1.1rem; margin: 0 0.35rem 0 0.06rem; }
   .hero .scroll-hint {
     position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
     color: var(--text-3); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.3em;
@@ -376,10 +364,6 @@
   </div>
   <h1>無限連勤教</h1>
   <p class="creed">休まないこと、それが<em>唯一の救済</em>。</p>
-  <div class="counter">
-    <span class="label">Your Continuous Working Time</span>
-    <span class="value" id="counter">──</span>
-  </div>
   <span class="scroll-hint">SCROLL</span>
 </header>
 
@@ -572,24 +556,6 @@ hint: そのようなブランチは、この教団には存在しません。</
 <div class="toast" id="toast"></div>
 
 <script>
-  // 連続勤務時間カウンター:ページを開いた瞬間から「勤務」が始まる
-  (function () {
-    var start = Date.now();
-    // 信徒はどうせ休んでいないので、下駄(240時間)を履かせる
-    var base = 240 * 3600 * 1000;
-    var el = document.getElementById('counter');
-    function pad(n) { return String(n).padStart(2, '0'); }
-    function tick() {
-      var t = base + (Date.now() - start);
-      var h = Math.floor(t / 3600000);
-      var m = Math.floor(t / 60000) % 60;
-      var s = Math.floor(t / 1000) % 60;
-      el.innerHTML = h + '<span class="unit">h</span>' + pad(m) + '<span class="unit">m</span>' + pad(s) + '<span class="unit">s</span>';
-    }
-    tick();
-    setInterval(tick, 1000);
-  })();
-
   // スクロール連動のフェードイン
   (function () {
     var io = new IntersectionObserver(function (entries) {
