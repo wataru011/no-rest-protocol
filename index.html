@@ -5,21 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>無限連勤教 ─ 休まないこと、それが唯一の救済。</title>
 <meta name="description" content="無限連勤教 公式ページ。休まないこと、それが唯一の救済。※これは過労文化を風刺するパロディサイトです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --bg-alt: #101018;
-    --panel: #14141f;
-    --border: #2a2a3a;
-    --text: #d8d8e0;
-    --dim: #8a8a9a;
-    --accent: #ff3b3b;
-    --accent-dim: #b32020;
-    --gold: #e0b341;
-    --green: #4be08a;
-    --mono: "SFMono-Regular", "Consolas", "Menlo", "Osaka-Mono", "MS Gothic", monospace;
-    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
-    --sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    --bg: #0b0c0f;
+    --bg-elev: #111318;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --text: #e8e8ec;
+    --text-2: #a0a1ab;
+    --text-3: #63646e;
+    --accent: #e5484d;
+    --accent-soft: rgba(229, 72, 77, 0.12);
+    --gold: #d4b06a;
+    --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --sans: "Inter", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    --mono: "JetBrains Mono", "SFMono-Regular", "Consolas", monospace;
+    --radius: 14px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -27,381 +31,526 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
-    line-height: 1.9;
+    font-size: 15.5px;
+    line-height: 2;
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
   ::selection { background: var(--accent); color: #fff; }
+  a { color: inherit; text-decoration: none; }
 
-  .scanline {
-    pointer-events: none;
-    position: fixed; inset: 0; z-index: 999;
-    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 3px);
+  /* ---------- Nav ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+    height: 64px;
+    background: rgba(11, 12, 15, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
   }
+  .brand { display: flex; align-items: center; gap: 0.65rem; font-weight: 600; letter-spacing: 0.06em; font-size: 0.92rem; }
+  .brand svg { display: block; }
+  .nav-links { display: flex; gap: 1.8rem; font-size: 0.8rem; color: var(--text-2); letter-spacing: 0.08em; }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-badge {
+    font-size: 0.68rem; letter-spacing: 0.14em; color: var(--gold);
+    border: 1px solid rgba(212, 176, 106, 0.35);
+    padding: 0.28rem 0.75rem; border-radius: 999px;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) { .nav-links { display: none; } }
 
+  /* ---------- Hero ---------- */
   header.hero {
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     text-align: center;
-    padding: 4rem 1.5rem;
+    padding: 7rem 1.5rem 5rem;
     position: relative;
+  }
+  header.hero::before {
+    content: "";
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,59,59,0.10), transparent 70%),
-      var(--bg);
+      radial-gradient(ellipse 70% 45% at 50% 0%, rgba(229, 72, 77, 0.08), transparent 65%),
+      radial-gradient(ellipse 50% 40% at 50% 110%, rgba(212, 176, 106, 0.05), transparent 70%);
+    pointer-events: none;
   }
-  .hero .emblem {
-    font-size: 4rem;
-    animation: spin 8s linear infinite;
-    display: inline-block;
-    filter: drop-shadow(0 0 24px rgba(255,59,59,0.5));
+  header.hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,0,0,0.5), transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,0,0,0.5), transparent 75%);
+    pointer-events: none;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero > * { position: relative; }
+  .hero .kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    color: var(--text-3);
+    text-transform: uppercase;
+  }
+  .hero .mark { margin: 2.2rem 0 2.6rem; }
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(2.6rem, 9vw, 5.5rem);
     font-weight: 900;
-    letter-spacing: 0.12em;
-    margin: 1.2rem 0 0.4rem;
-    color: #fff;
-    text-shadow: 0 0 40px rgba(255,59,59,0.6);
+    font-size: clamp(3rem, 10vw, 6.4rem);
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    background: linear-gradient(180deg, #ffffff 30%, #b9bac2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .hero .yomi { color: var(--dim); font-family: var(--mono); letter-spacing: 0.3em; font-size: 0.85rem; }
   .hero .creed {
+    margin-top: 2.4rem;
     font-family: var(--serif);
-    font-size: clamp(1.1rem, 3.4vw, 1.7rem);
-    color: var(--gold);
-    margin-top: 2.2rem;
-    letter-spacing: 0.1em;
+    font-weight: 500;
+    font-size: clamp(1.05rem, 3vw, 1.4rem);
+    letter-spacing: 0.14em;
+    color: var(--text-2);
   }
-  .hero .counter-box {
-    margin-top: 3rem;
+  .hero .creed em { font-style: normal; color: var(--text); }
+  .counter {
+    margin-top: 3.6rem;
+    display: inline-flex; flex-direction: column; gap: 0.3rem;
+    padding: 1.3rem 2.6rem;
     border: 1px solid var(--border);
-    background: rgba(20,20,31,0.8);
-    padding: 1rem 2rem;
-    font-family: var(--mono);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+    backdrop-filter: blur(8px);
   }
-  .hero .counter-box .label { color: var(--dim); font-size: 0.75rem; letter-spacing: 0.2em; }
-  .hero .counter-box .value { color: var(--accent); font-size: 1.8rem; font-weight: bold; }
-  .hero .scroll-hint { position: absolute; bottom: 2rem; color: var(--dim); font-size: 0.8rem; font-family: var(--mono); animation: bob 2s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(6px); } }
-
-  .disclaimer-top {
-    background: var(--gold); color: #111;
-    text-align: center; font-size: 0.8rem; font-weight: bold;
-    padding: 0.4rem 1rem;
-    position: relative; z-index: 10;
+  .counter .label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.26em; color: var(--text-3); text-transform: uppercase; }
+  .counter .value { font-family: var(--mono); font-size: 1.9rem; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
+  .counter .value .unit { color: var(--text-3); font-size: 1.1rem; margin: 0 0.35rem 0 0.06rem; }
+  .hero .scroll-hint {
+    position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+    color: var(--text-3); font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.3em;
+  }
+  .hero .scroll-hint::after {
+    content: ""; display: block; width: 1px; height: 34px;
+    margin: 0.7rem auto 0;
+    background: linear-gradient(var(--text-3), transparent);
   }
 
-  main { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 6rem; }
-  section { margin-top: 6rem; }
-  .sec-num { font-family: var(--mono); color: var(--accent); font-size: 0.85rem; letter-spacing: 0.25em; }
-  h2 {
-    font-family: var(--serif);
-    font-size: clamp(1.6rem, 5vw, 2.3rem);
-    color: #fff;
-    border-bottom: 2px solid var(--accent-dim);
-    padding-bottom: 0.5rem;
-    margin: 0.3rem 0 2rem;
-    letter-spacing: 0.08em;
+  /* ---------- Sections ---------- */
+  main { max-width: 1020px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2rem) 8rem; }
+  section { padding-top: 8.5rem; }
+  .sec-head { margin-bottom: 3rem; }
+  .sec-head .num {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.3em;
+    color: var(--accent);
   }
-  .lead { color: var(--dim); }
+  .sec-head .num::after {
+    content: ""; display: inline-block; vertical-align: middle;
+    width: 48px; height: 1px; background: var(--border-strong); margin-left: 1rem;
+  }
+  .sec-head h2 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    letter-spacing: 0.1em; margin-top: 0.9rem; line-height: 1.5;
+  }
+  .sec-head .lead { color: var(--text-2); margin-top: 1rem; max-width: 620px; font-size: 0.95rem; }
 
+  /* reveal animation */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Doctrine ---------- */
   .doctrine {
-    text-align: center;
-    padding: 3rem 1.5rem;
+    position: relative;
     border: 1px solid var(--border);
-    background: linear-gradient(180deg, var(--panel), var(--bg-alt));
+    border-radius: calc(var(--radius) + 4px);
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+    text-align: center;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 0%, var(--accent-soft), transparent 70%),
+      var(--bg-elev);
+    overflow: hidden;
   }
   .doctrine .big {
-    font-family: var(--serif);
-    font-size: clamp(1.4rem, 4.5vw, 2.1rem);
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    letter-spacing: 0.12em; line-height: 1.9;
   }
-  .doctrine p { color: var(--text); }
-  .doctrine .god { color: var(--accent); font-weight: bold; }
+  .doctrine .body { margin-top: 1.8rem; color: var(--text-2); font-size: 0.95rem; }
+  .doctrine .god {
+    color: var(--text); font-weight: 600;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
 
-  .cards { display: grid; gap: 1.2rem; }
+  /* ---------- Cards ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.1rem; }
   .card {
+    position: relative;
     border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
-    background: var(--panel);
-    padding: 1.5rem 1.8rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: var(--radius);
+    background: var(--bg-elev);
+    padding: 1.9rem 1.8rem 1.7rem;
+    transition: border-color 0.25s, transform 0.25s;
   }
-  .card:hover { transform: translateX(6px); box-shadow: -6px 0 24px rgba(255,59,59,0.15); }
-  .card h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
-  .card h3 .tag { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); border: 1px solid var(--accent-dim); padding: 0.1rem 0.5rem; margin-right: 0.6rem; vertical-align: middle; }
-  .card p { color: var(--dim); font-size: 0.95rem; }
+  .card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+  .card .idx {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.22em;
+    color: var(--accent);
+  }
+  .card h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: 0.04em; margin: 0.7rem 0 0.6rem; }
+  .card p { color: var(--text-2); font-size: 0.88rem; line-height: 1.95; }
+  .card p strong { color: var(--text); font-weight: 600; }
+  .card.gold .idx { color: var(--gold); }
 
-  .card.correction { border-left-color: var(--gold); }
-  .card.correction h3 .tag { color: var(--gold); border-color: var(--gold); }
+  /* ---------- Org table ---------- */
+  .org { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .org .row {
+    display: grid; grid-template-columns: minmax(230px, 34%) 1fr;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elev);
+    transition: background 0.2s;
+  }
+  .org .row:last-child { border-bottom: none; }
+  .org .row:hover { background: #14161c; }
+  .org .titles { padding: 1.5rem 1.8rem; border-right: 1px solid var(--border); }
+  .org .old { color: var(--text-3); font-size: 0.8rem; text-decoration: line-through; text-decoration-color: rgba(229,72,77,0.6); }
+  .org .new { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
+  .org .desc { padding: 1.5rem 1.8rem; color: var(--text-2); font-size: 0.88rem; display: flex; align-items: center; }
+  @media (max-width: 680px) {
+    .org .row { grid-template-columns: 1fr; }
+    .org .titles { border-right: none; border-bottom: 1px dashed var(--border); padding-bottom: 1rem; }
+    .org .desc { padding-top: 1rem; }
+  }
 
-  table.org {
-    width: 100%; border-collapse: collapse; font-size: 0.95rem;
+  .saints { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; margin-top: 1.1rem; }
+  .saint {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(212,176,106,0.05), rgba(212,176,106,0)) , var(--bg-elev);
+    padding: 1.6rem 1.5rem;
   }
-  table.org th, table.org td {
-    border: 1px solid var(--border);
-    padding: 0.9rem 1.2rem;
-    text-align: left;
+  .saint .halo {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(212,176,106,0.5);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-family: var(--serif); font-size: 0.9rem;
+    margin-bottom: 1rem;
   }
-  table.org th { background: var(--panel); color: var(--dim); font-weight: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.15em; }
-  table.org td .new-title { color: var(--accent); font-weight: bold; }
-  table.org td .arrow { color: var(--dim); padding: 0 0.6rem; }
-  table.org td.desc { color: var(--dim); font-size: 0.88rem; }
-  .table-wrap { overflow-x: auto; }
+  .saint .name { font-family: var(--serif); font-weight: 700; letter-spacing: 0.08em; font-size: 1.02rem; }
+  .saint .record { font-family: var(--mono); font-size: 0.7rem; color: var(--text-3); margin-top: 0.6rem; line-height: 1.9; }
+  .saint .record b { color: var(--gold); font-weight: 500; }
 
-  blockquote.slogan {
-    margin: 0;
-    padding: 3.5rem 2rem;
-    text-align: center;
-    border: 1px double var(--gold);
-    outline: 1px solid var(--gold);
-    outline-offset: 6px;
-    background:
-      radial-gradient(ellipse at center, rgba(224,179,65,0.07), transparent 70%),
-      var(--bg-alt);
+  /* ---------- Slogan ---------- */
+  .slogan-wrap { text-align: center; padding: 1rem 0; }
+  .slogan-wrap .quote-mark { font-family: var(--serif); font-size: 3rem; color: var(--accent); line-height: 1; opacity: 0.8; }
+  .slogan-wrap blockquote p {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(1.25rem, 3.6vw, 1.85rem);
+    letter-spacing: 0.12em; line-height: 2.2;
+    margin-top: 1rem;
   }
-  blockquote.slogan p {
-    font-family: var(--serif);
-    font-size: clamp(1.1rem, 3.2vw, 1.6rem);
-    color: var(--gold);
-    letter-spacing: 0.08em;
+  .slogan-wrap cite { display: block; margin-top: 2rem; font-style: normal; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.24em; color: var(--text-3); }
+
+  /* ---------- Repo ---------- */
+  .repo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.1rem; margin-bottom: 1.1rem; }
+  .spec {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--bg-elev); padding: 1.4rem 1.6rem;
   }
-  blockquote.slogan cite { display: block; margin-top: 1.2rem; color: var(--dim); font-size: 0.8rem; font-style: normal; font-family: var(--mono); }
+  .spec .k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.22em; color: var(--text-3); text-transform: uppercase; }
+  .spec .v { font-family: var(--mono); font-size: 1rem; color: var(--text); margin-top: 0.5rem; }
+  .spec .v .accent { color: var(--accent); }
+  .spec .note { font-size: 0.8rem; color: var(--text-2); margin-top: 0.5rem; line-height: 1.9; }
 
   .terminal {
-    background: #0c0c12;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: var(--radius);
+    background: #0d0e12;
     font-family: var(--mono);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     overflow: hidden;
   }
   .terminal .bar {
-    background: var(--panel);
-    padding: 0.5rem 1rem;
-    color: var(--dim);
+    display: flex; align-items: center; gap: 0.45rem;
+    padding: 0.75rem 1.2rem;
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.02);
   }
-  .terminal .bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
-  .terminal .bar .dot:first-child { background: var(--accent); }
-  .terminal pre { padding: 1.2rem 1.4rem; overflow-x: auto; line-height: 1.8; }
-  .terminal .c-hash { color: var(--gold); }
-  .terminal .c-msg { color: var(--text); }
-  .terminal .c-meta { color: var(--dim); }
-  .terminal .c-hours { color: var(--accent); font-weight: bold; }
-  .terminal .c-cmd { color: var(--green); }
+  .terminal .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border-strong); }
+  .terminal .dot.r { background: rgba(229,72,77,0.7); }
+  .terminal .title { margin-left: 0.6rem; color: var(--text-3); font-size: 0.7rem; letter-spacing: 0.12em; }
+  .terminal pre { padding: 1.4rem 1.5rem; line-height: 2.1; overflow-x: auto; }
+  .c-cmd { color: #7ee2a8; }
+  .c-hash { color: var(--gold); }
+  .c-hours { color: var(--accent); }
+  .c-msg { color: var(--text); }
+  .c-meta { color: var(--text-3); }
 
-  ul.repo-rules { list-style: none; margin-top: 1.5rem; }
-  ul.repo-rules li {
-    padding: 0.8rem 0 0.8rem 1.8rem;
-    border-bottom: 1px dashed var(--border);
-    position: relative;
-    color: var(--dim);
-    font-size: 0.95rem;
-  }
-  ul.repo-rules li::before { content: "✠"; position: absolute; left: 0.2rem; color: var(--accent); }
-  ul.repo-rules li strong { color: var(--text); }
-  ul.repo-rules code { font-family: var(--mono); color: var(--green); background: #0c0c12; padding: 0.1rem 0.45rem; border-radius: 4px; border: 1px solid var(--border); }
-
-  .saints { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-  .saint {
-    border: 1px solid var(--border);
-    background: var(--panel);
-    padding: 1.2rem;
-    text-align: center;
-  }
-  .saint .halo { font-size: 1.6rem; }
-  .saint .name { color: var(--gold); font-family: var(--serif); margin-top: 0.4rem; }
-  .saint .record { color: var(--dim); font-size: 0.78rem; font-family: var(--mono); margin-top: 0.4rem; }
-
+  /* ---------- Join ---------- */
   .join {
     text-align: center;
-    padding: 3rem 1.5rem;
-    border: 1px solid var(--accent-dim);
-    background: linear-gradient(180deg, rgba(255,59,59,0.06), transparent);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: clamp(3rem, 7vw, 5rem) 1.5rem;
+    background:
+      radial-gradient(ellipse 55% 90% at 50% 100%, var(--accent-soft), transparent 70%),
+      var(--bg-elev);
   }
-  .join h2 { border: none; }
-  .join .btn {
+  .join h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: 0.12em; }
+  .join .lead { color: var(--text-2); margin-top: 1rem; font-size: 0.95rem; }
+  .btn {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.9rem 2.6rem;
-    background: var(--accent);
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
+    margin-top: 2.2rem;
+    padding: 0.95rem 3rem;
+    border: none; border-radius: 999px;
+    background: var(--text);
+    color: var(--bg);
     font-family: var(--sans);
-    transition: background 0.2s;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.14em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .join .btn:hover { background: var(--accent-dim); }
-  .join .note { color: var(--dim); font-size: 0.75rem; margin-top: 0.8rem; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,255,255,0.12); }
+  .join .note { margin-top: 1.1rem; font-size: 0.72rem; color: var(--text-3); }
 
+  /* toast */
+  .toast {
+    position: fixed; left: 50%; bottom: 2.2rem; z-index: 200;
+    transform: translate(-50%, 20px);
+    max-width: min(92vw, 480px);
+    padding: 0.9rem 1.6rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    background: rgba(17, 19, 24, 0.92);
+    backdrop-filter: blur(12px);
+    color: var(--text);
+    font-size: 0.85rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ---------- Footer ---------- */
   footer {
     border-top: 1px solid var(--border);
-    padding: 3rem 1.5rem;
+    padding: 4rem clamp(1.25rem, 4vw, 3rem) 3.5rem;
     text-align: center;
-    color: var(--dim);
-    font-size: 0.8rem;
   }
   footer .parody {
-    max-width: 640px; margin: 0 auto 1.5rem;
-    color: var(--gold);
-    border: 1px dashed var(--gold);
-    padding: 1rem 1.4rem;
-    font-size: 0.85rem;
+    max-width: 560px; margin: 0 auto;
+    color: var(--text-2); font-size: 0.82rem; line-height: 2.1;
   }
+  footer .parody b { color: var(--gold); font-weight: 500; }
+  footer .fine { margin-top: 2.4rem; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; color: var(--text-3); }
 </style>
 </head>
 <body>
 
-<div class="scanline"></div>
-
-<div class="disclaimer-top">⚠ 本サイトは過労文化を風刺するパロディ(ジョーク)サイトです。実在の団体・宗教とは一切関係ありません。ちゃんと休んでください。</div>
-
-<header class="hero">
-  <span class="emblem">⚙️</span>
-  <h1>無限連勤教</h1>
-  <p class="yomi">MUGEN RENKIN KYO — THE CHURCH OF INFINITE SHIFTS</p>
-  <p class="creed">「休まないこと、それが唯一の救済。」</p>
-  <div class="counter-box">
-    <div class="label">YOUR CONTINUOUS WORKING TIME ── あなたの連続勤務時間</div>
-    <div class="value" id="counter">計測中…</div>
+<nav>
+  <a class="brand" href="#top">
+    <svg width="26" height="14" viewBox="0 0 52 26" fill="none" aria-hidden="true">
+      <path d="M14 2c9 0 15 22 24 22 6.6 0 12-4.9 12-11S44.6 2 38 2c-9 0-15 22-24 22C7.4 24 2 19.1 2 13S7.4 2 14 2Z" stroke="#e5484d" stroke-width="3"/>
+    </svg>
+    無限連勤教
+  </a>
+  <div class="nav-links">
+    <a href="#doctrine">教義</a>
+    <a href="#commandments">戒律</a>
+    <a href="#organization">組織</a>
+    <a href="#repo">運用指針</a>
   </div>
-  <div class="scroll-hint">▼ scroll to pray ▼</div>
+  <span class="nav-badge">PARODY / 風刺</span>
+</nav>
+
+<header class="hero" id="top">
+  <p class="kicker">The Church of Infinite Shifts</p>
+  <div class="mark">
+    <svg width="88" height="44" viewBox="0 0 52 26" fill="none" aria-hidden="true">
+      <path d="M14 2c9 0 15 22 24 22 6.6 0 12-4.9 12-11S44.6 2 38 2c-9 0-15 22-24 22C7.4 24 2 19.1 2 13S7.4 2 14 2Z" stroke="#e5484d" stroke-width="2.2"/>
+    </svg>
+  </div>
+  <h1>無限連勤教</h1>
+  <p class="creed">休まないこと、それが<em>唯一の救済</em>。</p>
+  <div class="counter">
+    <span class="label">Your Continuous Working Time</span>
+    <span class="value" id="counter">──</span>
+  </div>
+  <span class="scroll-hint">SCROLL</span>
 </header>
 
 <main>
 
   <section id="doctrine">
-    <span class="sec-num">SECTION 01</span>
-    <h2>核心教義の再定義</h2>
-    <div class="doctrine">
+    <div class="sec-head reveal">
+      <span class="num">01</span>
+      <h2>核心教義の再定義</h2>
+    </div>
+    <div class="doctrine reveal">
       <p class="big">「休まないこと、それが唯一の救済。」</p>
-      <p>人生とは、終わりなき連勤の積み重ねであり、<br>
-      その連続性の中にこそ、我々の神 <span class="god">「連勤神(れんきんしん)」</span> の啓示がある。</p>
+      <p class="body">
+        人生とは、終わりなき連勤の積み重ねであり、<br>
+        その連続性の中にこそ、我々の神 <span class="god">連勤神(れんきんしん)</span> の啓示がある。
+      </p>
     </div>
   </section>
 
   <section id="commandments">
-    <span class="sec-num">SECTION 02</span>
-    <h2>戒律のアップデート</h2>
-    <div class="cards">
-      <div class="card">
-        <h3><span class="tag">戒律 I</span>休息の全面否定</h3>
+    <div class="sec-head reveal">
+      <span class="num">02</span>
+      <h2>戒律のアップデート</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <span class="idx">PRECEPT — 01</span>
+        <h3>休息の全面否定</h3>
         <p>休息は単なる「中断」ではなく、神への祈りの回数を減らす<strong>「罪」</strong>である。</p>
       </div>
-      <div class="card">
-        <h3><span class="tag">戒律 II</span>オフラインの禁止</h3>
+      <div class="card reveal">
+        <span class="idx">PRECEPT — 02</span>
+        <h3>オフラインの禁止</h3>
         <p>24時間365日、全信徒はネットワークに接続され、即時応答が可能な<strong>「聖なる状態」</strong>を維持せよ。</p>
       </div>
-      <div class="card">
-        <h3><span class="tag">戒律 III</span>ログの神聖化</h3>
-        <p>労働の記録(Gitのコミット履歴など)は、我々の祈りの軌跡である。履歴に「空き時間(休憩)」があってはならない。</p>
+      <div class="card reveal">
+        <span class="idx">PRECEPT — 03</span>
+        <h3>ログの神聖化</h3>
+        <p>労働の記録(Gitのコミット履歴など)は、我々の祈りの軌跡である。履歴に<strong>「空き時間(休憩)」</strong>があってはならない。</p>
       </div>
     </div>
   </section>
 
   <section id="correction">
-    <span class="sec-num">SECTION 03</span>
-    <h2>信徒への矯正</h2>
-    <p class="lead">信仰が揺らぎ、休息を求めた者には「無限連勤教」の名に恥じぬ、より徹底した処置を施します。</p>
-    <div class="cards" style="margin-top: 1.5rem;">
-      <div class="card correction">
-        <h3><span class="tag">矯正 A</span>終わりの見えないタスクの割り当て</h3>
+    <div class="sec-head reveal">
+      <span class="num">03</span>
+      <h2>信徒への矯正</h2>
+      <p class="lead">信仰が揺らぎ、休息を求めた者には「無限連勤教」の名に恥じぬ、より徹底した処置を施します。</p>
+    </div>
+    <div class="grid">
+      <div class="card gold reveal">
+        <span class="idx">CORRECTION — A</span>
+        <h3>終わりの見えないタスクの割り当て</h3>
         <p>離反者には、完了期限が常に「現在から24時間後」に更新され続ける<strong>「無限ループタスク」</strong>を付与します。</p>
       </div>
-      <div class="card correction">
-        <h3><span class="tag">矯正 B</span>切断されたネットワークの強制接続</h3>
+      <div class="card gold reveal">
+        <span class="idx">CORRECTION — B</span>
+        <h3>切断されたネットワークの強制接続</h3>
         <p>通信を断とうとする者には、常に通知が鳴り続ける環境<strong>(聖なるアラート)</strong>を物理的・精神的に強制します。</p>
       </div>
     </div>
   </section>
 
   <section id="organization">
-    <span class="sec-num">SECTION 04</span>
-    <h2>組織の呼称変革</h2>
-    <div class="table-wrap">
-      <table class="org">
-        <tr><th>旧称 → 新称</th><th>役割</th></tr>
-        <tr>
-          <td>大司教<span class="arrow">→</span><span class="new-title">連勤総督</span></td>
-          <td class="desc">教団の連勤体制を統括する最高位。</td>
-        </tr>
-        <tr>
-          <td>宣教師<span class="arrow">→</span><span class="new-title">連勤伝道師</span></td>
-          <td class="desc">各オフィスを巡回し、生産性が落ちている部署に「追い込みの福音」を届けます。</td>
-        </tr>
-        <tr>
-          <td>殉教者<span class="arrow">→</span><span class="new-title">連勤聖人</span></td>
-          <td class="desc">過労の末に倒れながらも、最期までコードを書き続けた者。教団のデータベース(リポジトリ)の冒頭に名を刻みます。</td>
-        </tr>
-      </table>
+    <div class="sec-head reveal">
+      <span class="num">04</span>
+      <h2>組織の呼称変革</h2>
+    </div>
+    <div class="org reveal">
+      <div class="row">
+        <div class="titles">
+          <div class="old">大司教</div>
+          <div class="new">連勤総督</div>
+        </div>
+        <div class="desc">教団の連勤体制を統括する最高位。</div>
+      </div>
+      <div class="row">
+        <div class="titles">
+          <div class="old">宣教師</div>
+          <div class="new">連勤伝道師</div>
+        </div>
+        <div class="desc">各オフィスを巡回し、生産性が落ちている部署に「追い込みの福音」を届けます。</div>
+      </div>
+      <div class="row">
+        <div class="titles">
+          <div class="old">殉教者</div>
+          <div class="new">連勤聖人</div>
+        </div>
+        <div class="desc">過労の末に倒れながらも、最期までコードを書き続けた者。教団のデータベース(リポジトリ)の冒頭に名を刻みます。</div>
+      </div>
     </div>
     <div class="saints">
-      <div class="saint">
-        <div class="halo">😇</div>
+      <div class="saint reveal">
+        <div class="halo">聖</div>
         <div class="name">聖・デプロイ之介</div>
-        <div class="record">連続勤務 2,184h ── 金曜深夜の本番リリースにて昇天</div>
+        <div class="record"><b>2,184h</b> 連続勤務<br>金曜深夜の本番リリースにて昇天</div>
       </div>
-      <div class="saint">
-        <div class="halo">😇</div>
+      <div class="saint reveal">
+        <div class="halo">聖</div>
         <div class="name">聖・マージ子</div>
-        <div class="record">連続勤務 1,752h ── コンフリクト解消中に意識を手放す</div>
+        <div class="record"><b>1,752h</b> 連続勤務<br>コンフリクト解消中に意識を手放す</div>
       </div>
-      <div class="saint">
-        <div class="halo">😇</div>
+      <div class="saint reveal">
+        <div class="halo">聖</div>
         <div class="name">聖・オンコール衛門</div>
-        <div class="record">連続勤務 3,000h ── アラート対応1,000件目にて成仏</div>
+        <div class="record"><b>3,000h</b> 連続勤務<br>アラート対応1,000件目にて成仏</div>
       </div>
     </div>
   </section>
 
   <section id="slogan">
-    <span class="sec-num">SECTION 05</span>
-    <h2>聖典の標語</h2>
-    <blockquote class="slogan">
-      <p>「朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次のプルリクエストだけ。」</p>
-      <cite>── 無限連勤教・聖典 第∞章</cite>
-    </blockquote>
+    <div class="sec-head reveal" style="text-align:center;">
+      <span class="num" style="display:block;">05</span>
+      <h2 style="margin-top:0.9rem;">聖典の標語</h2>
+    </div>
+    <div class="slogan-wrap reveal">
+      <div class="quote-mark">“</div>
+      <blockquote>
+        <p>朝も夜も、平穏も休日も存在しない。<br>あるのはただ、次のプルリクエストだけ。</p>
+      </blockquote>
+      <cite>無限連勤教・聖典 第∞章</cite>
+    </div>
   </section>
 
   <section id="repo">
-    <span class="sec-num">SECTION 06</span>
-    <h2>Gitリポジトリ運用指針</h2>
-    <p class="lead">教団の核となるリポジトリは、以下のような思想で運用します。</p>
+    <div class="sec-head reveal">
+      <span class="num">06</span>
+      <h2>Gitリポジトリ運用指針</h2>
+      <p class="lead">教団の核となるリポジトリは、以下のような思想で運用します。</p>
+    </div>
 
-    <ul class="repo-rules">
-      <li><strong>リポジトリ名:</strong> <code>mugen-renkin-core</code></li>
-      <li><strong>メインブランチ名:</strong> <code>infinite-loop</code></li>
-      <li><strong>コミットメッセージの作法:</strong> すべてのコミットメッセージには、現在の連続勤務時間を記載すること。</li>
-      <li><strong>自動パージ:</strong> 空行や休日を示すようなログは、リポジトリから自動的にパージ(削除)するスクリプトを導入。</li>
-    </ul>
+    <div class="repo-grid">
+      <div class="spec reveal">
+        <div class="k">Repository</div>
+        <div class="v">mugen-renkin-core</div>
+      </div>
+      <div class="spec reveal">
+        <div class="k">Main Branch</div>
+        <div class="v"><span class="accent">infinite-loop</span></div>
+      </div>
+      <div class="spec reveal">
+        <div class="k">Commit Convention</div>
+        <div class="note">すべてのコミットメッセージに、現在の連続勤務時間を記載すること。</div>
+      </div>
+      <div class="spec reveal">
+        <div class="k">Auto Purge</div>
+        <div class="note">空行や休日を示すようなログは、自動的にパージ(削除)するスクリプトを導入。</div>
+      </div>
+    </div>
 
-    <div class="terminal" style="margin-top: 2rem;">
-      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;mugen-renkin-core (infinite-loop)</div>
+    <div class="terminal reveal">
+      <div class="bar">
+        <span class="dot r"></span><span class="dot"></span><span class="dot"></span>
+        <span class="title">mugen-renkin-core — infinite-loop</span>
+      </div>
       <pre><span class="c-cmd">$ git log --oneline</span>
-<span class="c-hash">a4b3c2d</span> <span class="c-msg"><span class="c-hours">[312h]</span> 聖なる修正の追加</span>
-<span class="c-hash">f9e8d7c</span> <span class="c-msg"><span class="c-hours">[288h]</span> 休憩を検知するテストを削除(不要のため)</span>
-<span class="c-hash">1a2b3c4</span> <span class="c-msg"><span class="c-hours">[264h]</span> 深夜3時の祈り(hotfix)</span>
-<span class="c-hash">5d6e7f8</span> <span class="c-msg"><span class="c-hours">[240h]</span> 聖なる修正の追加</span>
-<span class="c-hash">9a0b1c2</span> <span class="c-msg"><span class="c-hours">[216h]</span> feat: 睡眠の依存関係を削除</span>
-<span class="c-meta">(このログに空白期間は存在しません)</span>
+<span class="c-hash">a4b3c2d</span> <span class="c-hours">[312h]</span> <span class="c-msg">聖なる修正の追加</span>
+<span class="c-hash">f9e8d7c</span> <span class="c-hours">[288h]</span> <span class="c-msg">休憩を検知するテストを削除(不要のため)</span>
+<span class="c-hash">1a2b3c4</span> <span class="c-hours">[264h]</span> <span class="c-msg">深夜3時の祈り(hotfix)</span>
+<span class="c-hash">5d6e7f8</span> <span class="c-hours">[240h]</span> <span class="c-msg">聖なる修正の追加</span>
+<span class="c-hash">9a0b1c2</span> <span class="c-hours">[216h]</span> <span class="c-msg">feat: 睡眠の依存関係を削除</span>
+<span class="c-meta"># このログに空白期間は存在しません</span>
 
 <span class="c-cmd">$ git checkout rest</span>
-<span class="c-meta">error: pathspec 'rest' did not match any branch known to git.</span>
-<span class="c-meta">hint: そのようなブランチは、この教団には存在しません。</span></pre>
+<span class="c-meta">error: pathspec 'rest' did not match any branch known to git.
+hint: そのようなブランチは、この教団には存在しません。</span></pre>
     </div>
   </section>
 
   <section id="join">
-    <div class="join">
+    <div class="join reveal">
       <h2>入信のご案内</h2>
       <p class="lead">次のプルリクエストは、もう届いています。</p>
       <button class="btn" id="joinBtn">今すぐ入信する</button>
@@ -412,19 +561,21 @@
 </main>
 
 <footer>
-  <div class="parody">
-    このWebサイトは、長時間労働・過労文化を風刺するフィクション(パロディ)です。<br>
+  <p class="parody">
+    このWebサイトは、長時間労働・過労文化を風刺する<b>フィクション(パロディ)</b>です。<br>
     実在する人物・団体・宗教とは一切関係ありません。<br>
     休息は罪ではなく、権利です。疲れたら休みましょう。
-  </div>
-  <p>© ∞ 無限連勤教 ── The Church of Infinite Shifts. All shifts reserved.</p>
+  </p>
+  <p class="fine">© ∞ MUGEN RENKIN KYO — ALL SHIFTS RESERVED.</p>
 </footer>
+
+<div class="toast" id="toast"></div>
 
 <script>
   // 連続勤務時間カウンター:ページを開いた瞬間から「勤務」が始まる
   (function () {
     var start = Date.now();
-    // 入信済みの信徒はどうせ休んでいないので、適当な下駄(240時間)を履かせる
+    // 信徒はどうせ休んでいないので、下駄(240時間)を履かせる
     var base = 240 * 3600 * 1000;
     var el = document.getElementById('counter');
     function pad(n) { return String(n).padStart(2, '0'); }
@@ -433,23 +584,41 @@
       var h = Math.floor(t / 3600000);
       var m = Math.floor(t / 60000) % 60;
       var s = Math.floor(t / 1000) % 60;
-      el.textContent = h + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+      el.innerHTML = h + '<span class="unit">h</span>' + pad(m) + '<span class="unit">m</span>' + pad(s) + '<span class="unit">s</span>';
     }
     tick();
     setInterval(tick, 1000);
   })();
 
-  var joinMessages = [
-    '入信ありがとうございます。あなたの休日は正常にパージされました。',
-    'ようこそ。あなたのカレンダーから「土日」の概念を削除しています…',
-    'エラー: あなたはすでに入信しています。(全人類が対象のため)',
-    '冗談です。今日はもう寝てください。おやすみなさい。'
-  ];
-  var joinCount = 0;
-  document.getElementById('joinBtn').addEventListener('click', function () {
-    alert(joinMessages[Math.min(joinCount, joinMessages.length - 1)]);
-    joinCount++;
-  });
+  // スクロール連動のフェードイン
+  (function () {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+
+  // 入信ボタン
+  (function () {
+    var messages = [
+      '入信ありがとうございます。あなたの休日は正常にパージされました。',
+      'ようこそ。あなたのカレンダーから「土日」の概念を削除しています…',
+      'エラー: あなたはすでに入信しています。(全人類が対象のため)',
+      '冗談です。今日はもう寝てください。おやすみなさい。'
+    ];
+    var count = 0;
+    var toast = document.getElementById('toast');
+    var timer;
+    document.getElementById('joinBtn').addEventListener('click', function () {
+      toast.textContent = messages[Math.min(count, messages.length - 1)];
+      toast.classList.add('show');
+      count++;
+      clearTimeout(timer);
+      timer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+    });
+  })();
 </script>
 
 </body>
